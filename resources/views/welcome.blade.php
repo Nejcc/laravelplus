@@ -9,8 +9,8 @@
     <link href="{{ asset('dist/css/tabler.min.css') }}" rel="stylesheet"/>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class=" d-flex flex-column" id="app">
-<div class="page page-center bg-dark">
+<body class="d-flex flex-column bg-dark" id="app">
+<div class="page page-center">
     <div class="container container-tight py-4">
         {{--        <div class="text-center mb-4">--}}
         {{--            <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('static/logo.svg') }}" height="36" alt=""></a>--}}
