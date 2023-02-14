@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Builder;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +23,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        /**
+         * prevent N+1  on develop
+         */
+        Model::preventLazyLoading(! app()->isProduction());
+
+        /**
+         * Overide paginator
+         */
+//        Paginator::defaultView('vendor.pagination.bootstrap-5');
+
+        /**
+         * Config for database
+         */
+        Schema::defaultStringLength(191);
+//        Builder::defaultStringLength(191);
     }
 }
