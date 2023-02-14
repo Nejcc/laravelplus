@@ -7,7 +7,7 @@
     <title>{{ config('app.name') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('dist/css/tabler.min.css') }}" rel="stylesheet"/>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+{{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
 </head>
 <body class="d-flex flex-column bg-dark" id="app">
 <div class="page page-center">
