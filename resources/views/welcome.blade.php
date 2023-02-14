@@ -8,6 +8,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('dist/css/tabler.min.css') }}" rel="stylesheet"/>
 {{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHRWQJJWYD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KHRWQJJWYD');
+    </script>
 </head>
 <body class="d-flex flex-column bg-dark" id="app">
 <div class="page page-center">
