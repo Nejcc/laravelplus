@@ -84,13 +84,14 @@ class UserTableSeeder extends Seeder
     private function GenerateAllUsers(): void
     {
         $users = [
-            ['name' => 'Nejc', 'username' => 'nejc', 'email' => null, 'password' => null, 'role' => 'super-admin'],
-            ['name' => 'Martin', 'username' => 'martin', 'email' => null, 'password' => null, 'role' => 'user'],
+            ['name' => 'Admin', 'username' => 'admin', 'email' => null, 'password' => null, 'role' => 'super-admin'],
+            ['name' => 'user', 'username' => 'user', 'email' => null, 'password' => null, 'role' => 'user'],
         ];
 
         foreach ($users as $user) {
             $user_object = User::create([
                 'name'     => $user['name'],
+                'username' => $user['username'],
                 'email'    => $this->generateUserEmailAddress($user),
                 'password' => $this->generateUserPassword($user),
             ]);
@@ -102,7 +103,7 @@ class UserTableSeeder extends Seeder
     private function generateUserEmailAddress($user)
     {
         if ($user['email'] === null) {
-            return $user['username'] . '@' . config('main_domain_name', config('app.domain'));
+            return $user['username'] . '@' . config('app.domain');
         }
 
         return $user['email'];
