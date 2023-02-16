@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2.1",
+        "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "spatie/laravel-permission": "^5.9.1"

@@ -19,6 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('login/github', [\App\Http\Controllers\Auth\SocialiteLoginController::class, 'redirectToGithubProvider'])->name('sociolite.github.login');
+Route::get('login/github/callback', [\App\Http\Controllers\Auth\SocialiteLoginController::class, 'handleGithubProviderCallback'])->name('sociolite.github.callback');
+
+//Route::get('login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
+//Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookProviderCallback');
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/tos', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');

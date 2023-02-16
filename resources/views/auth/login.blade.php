@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <a href="#" class="btn w-100">
+                                <a href="{{ route('sociolite.github.login') }}" class="btn w-100">
                                     <i class="ti ti-brand-github"></i>
                                     {{ __('Login with Github') }}
                                 </a>
