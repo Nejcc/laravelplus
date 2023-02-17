@@ -12,9 +12,9 @@ use Faker\Factory as Faker;
 
 class UserTableSeeder extends Seeder
 {
-    private $roles = ['admin', 'editor', 'writer', 'translator', 'power user', 'user'];
+    private $roles = ['super-admin', 'admin', 'editor', 'writer', 'translator', 'power user', 'user'];
     private $permissionsOnGroup = [
-        'admin' => [
+        'super-admin' => [
             'view'   => [
                 'user',
                 'sitemap',
@@ -41,7 +41,34 @@ class UserTableSeeder extends Seeder
 
             ],
         ],
-        'user'  => [
+        'admin'       => [
+            'view'   => [
+                'user',
+                'sitemap',
+                'role',
+                'permission',
+            ],
+            'create' => [
+                'permission',
+                'sitemap',
+                'user',
+                'role',
+            ],
+            'update' => [
+                'permission',
+                'sitemap',
+                'user',
+                'role',
+            ],
+            'delete' => [
+                'permission',
+                'sitemap',
+                'user',
+                'role',
+
+            ],
+        ],
+        'user'        => [
         ]
     ];
 
@@ -61,7 +88,7 @@ class UserTableSeeder extends Seeder
      */
     private function generateAllRoles(): void
     {
-        $god = Role::create(['name' => 'super-admin']);
+//        $god = Role::create(['name' => 'super-admin']);
 
         foreach ($this->roles as $role) {
             $newRole = Role::create(['name' => $role]);
