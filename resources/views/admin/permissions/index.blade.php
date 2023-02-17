@@ -38,7 +38,7 @@
                                 <path d="M12 5l0 14"></path>
                                 <path d="M5 12l14 0"></path>
                             </svg>
-                            Create new Role
+                            Create new Permission
                         </a>
                     </div>
                 </div>

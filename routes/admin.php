@@ -13,15 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
+Route::name('admin.')->group(function (){
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
 
-/*
- * Roles
- */
-Route::get('/roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('tos');
+    /*
+     * Roles
+     */
+    Route::get('/roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
+    /*
+     * Permissions
+     */
+    Route::get('/permissions', [App\Http\Controllers\Admin\PermissionController::class, 'index'])->name('permissions.index');
 
-/*
- * Permissions
- */
-Route::get('/permissions', [App\Http\Controllers\Admin\PermissionController::class, 'index'])->name('tos');
+});
