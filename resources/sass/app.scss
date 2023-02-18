@@ -6,3 +6,23 @@
 
 // Bootstrap
 //@import 'bootstrap/scss/bootstrap';
+
+.overide-dark .form-check-input:not(:checked),
+.overide-dark .form-control,
+.overide-dark .form-file-text,
+.overide-dark .form-select,
+.overide-dark button,
+.overide-dark .form-selectgroup-check {
+  background-color: #1a2234;
+  color: #f8fafc;
+  border-color: #243049;
+  &:hover{
+    background-color: #1a2234;
+    color: #f8fafc;
+    border-color: #313a57;
+  }
+}
+
+.border-radius-none {
+  border-radius: 0 !important;
+}

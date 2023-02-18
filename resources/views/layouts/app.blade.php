@@ -65,6 +65,9 @@
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <button class="dropdown-item">
+                                        {{ __('Logout') }}
+                                    </button>
                                     @csrf
                                 </form>
                             </div>
@@ -77,7 +80,7 @@
 
     <main class="py-4">
         @yield('content')
-        </main>
-    </div>
+    </main>
+</div>
 </body>
 </html>
