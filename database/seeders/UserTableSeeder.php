@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
@@ -61,15 +62,11 @@ class UserTableSeeder extends Seeder
                 'role',
             ],
             'delete' => [
-                'permission',
                 'sitemap',
                 'user',
-                'role',
-
             ],
         ],
-        'user'        => [
-        ]
+        'user'        => []
     ];
 
     /**
@@ -91,12 +88,14 @@ class UserTableSeeder extends Seeder
 //        $god = Role::create(['name' => 'super-admin']);
 
         foreach ($this->roles as $role) {
-            $newRole = Role::create(['name' => $role]);
+            $roleSlug = Str::slug($role);
+            $newRole = Role::create(['name' => $role, 'slug' => $roleSlug]);
             if (!empty($this->permissionsOnGroup[$role])) {
                 foreach ($this->permissionsOnGroup[$role] as $key => $permission) {
                     if (!empty($permission[0])) {
                         foreach ($permission as $p) {
-                            $newPermission = Permission::updateOrCreate(['name' => "{$key} {$p}", 'group_name' => $p]);
+                            $permissionSlug = Str::slug("{$key} {$p}");
+                            $newPermission = Permission::updateOrCreate(['name' => "{$key} {$p}", 'slug' => $permissionSlug, 'group_name' => $p]);
                             $newRole->givePermissionTo($newPermission);
                         }
                     }

@@ -21,9 +21,11 @@ Route::name('admin.')->group(function (){
      * Roles
      */
     Route::get('/roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
+    Route::get('/roles/{role:slug}', [App\Http\Controllers\Admin\RoleController::class, 'show'])->name('roles.show');
     /*
      * Permissions
      */
     Route::get('/permissions', [App\Http\Controllers\Admin\PermissionController::class, 'index'])->name('permissions.index');
+
 
 });

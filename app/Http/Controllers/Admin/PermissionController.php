@@ -26,11 +26,18 @@ class PermissionController extends Controller
      */
     public function index()
     {
+//        $permission_groups = Permission::all()->groupBy('group_name');
+        $permission_groups = Permission::all();
+
+        return view('admin.permissions.index', compact(['permission_groups']));
+    }
+
+    public function show()
+    {
         $permission_groups = Permission::all()->groupBy('group_name');
 
-        $role_id = auth()->user()->roles->first()->id;
-
-        $sql = "SELECT permission_id FROM role_has_permissions WHERE role_id = ". $role_id;
+        $user_id = 2;
+        $sql = "SELECT permission_id FROM model_has_permissions WHERE model_type = 'App/Models/User' AND model_id = ". $user_id;
         $user_permissions = collect(DB::select($sql))->unique()->pluck('permission_id')->toArray();
 
 

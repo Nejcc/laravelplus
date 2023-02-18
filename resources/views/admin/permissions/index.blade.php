@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', __('Dashboard'))
+@section('title', __('Permissions'))
 
 @section('header')
     <div class="page-header d-print-none">
@@ -10,7 +10,7 @@
                     <h2 class="page-title">
                         Permissions
                     </h2>
-                    <div class="text-muted mt-1">1-12 of 241 photos</div>
+{{--                    <div class="text-muted mt-1">1-12 of 241 photos</div>--}}
                 </div>
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
@@ -50,32 +50,35 @@
 @section('content')
     <div class="container my-3">
         <div class="row">
-            @foreach($permission_groups as $key => $permissions)
-            <div class="col-3  mb-3">
+            <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="mb-0">{{ ucfirst($key) }}</h3>
-                    </div>
-                    <div class="card-body">
-                        @foreach($permissions as $permission)
-
-{{--                            {{ dd($user_permissions) }}--}}
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                {{ ucfirst($permission->name) }}
-                            </div>
-                            <div class="col-auto ms-auto">
-                                <label class="form-check form-switch m-0">
-                                    <input class="form-check-input position-static" type="checkbox" {{ (in_array($permission->id, $user_permissions) == true) ? 'checked' : '' }}>
-                                </label>
-                            </div>
-                        </div>
-                        <p class="text-muted">{{ $permission->description ?? '' }}</p>
-                        @endforeach
+                    <div class="table-responsive">
+                        <table class="table table-vcenter card-table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Guard name</th>
+                                <th class="w-1"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($permission_groups as $permission)
+                                <tr>
+                                    <th>{{ $permission->id }}</th>
+                                    <td>{{ $permission->name }}</td>
+                                    <td>{{ $permission->guard_name }}</td>
+                                    <td class="d-flex">
+{{--                                        <a href="{{ route('admin.permissions.show', $permission->slug) }}" class="btn btn-primary mx-1">Show</a>--}}
+                                        <a href="#" class="btn btn-primary mx-1">Edit</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
 @endsection

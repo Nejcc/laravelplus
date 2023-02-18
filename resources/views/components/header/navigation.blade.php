@@ -117,11 +117,11 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="{{ route('admin.permissions.index') }}">
-                                        {{ __('Permissions') }}
-                                    </a>
                                     <a class="dropdown-item" href="{{ route('admin.roles.index') }}">
                                         {{ __('Roles') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.permissions.index') }}">
+                                        {{ __('Permissions') }}
                                     </a>
                                 </div>
                             </div>
