@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('admin.')->group(function (){
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
     /*
      * Roles
