@@ -29,3 +29,5 @@ Route::get('login/github/callback', [\App\Http\Controllers\Auth\SocialiteLoginCo
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/tos', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
+
+Route::post('/switch-user-back', [App\Http\Controllers\Admin\SwitchUserController::class, 'back'])->name('switch-user.back');

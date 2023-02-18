@@ -45,7 +45,30 @@
             </h1>
             <div class="navbar-nav flex-row order-md-last">
                 <div class="nav-item d-none d-md-flex me-3">
-                    <div class="btn-list">
+                    <div class="btn-list overide-dark">
+{{--                        <span class="mt-2">:</span>--}}
+                        @if(!session()->has('main_user_id'))
+                            <form action="{{ route('admin.switch-user.login-as') }}" method="post" class="d-flex">
+                                @csrf
+                                <select name="switch_user_to" class="form-select ">
+                                    <option selected disabled>Switch User</option>
+                                    @foreach(\App\Models\User::all() as $user)
+                                        @if($user->id != auth()->id())
+                                            <option value="{{ $user->id }}">{{ ucfirst($user->username ?: $user->email) }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                <input type="hidden" value="{{ auth()->id() }}" name="main_user_id">
+                                <button class="btn btn-link border-radius-none">Switch</button>
+                            </form>
+                        @else
+                            <form action="{{ route('switch-user.back') }}" method="post" class="d-flex">
+                                @csrf
+                                <input type="hidden" value="{{ session()->has('main_user_id') }}" name="main_user_id">
+                                <button class="btn btn-btn-dark">Remote logout</button>
+                            </form>
+                        @endif
+
                         <a href="https://github.com/nejcc/laravelplus" class="btn btn-dark" target="_blank"
                            rel="noreferrer">
                             <i class="ti ti-brand-github"></i> {{ __('Source code') }}

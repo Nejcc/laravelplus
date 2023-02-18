@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Http\\Controllers\\Admin\\SwitchUserControllerTest::testRemoteUserLoginAs":8,"Http\\Controllers\\Admin\\SwitchUserControllerTest::testUserRemoteBack":7},"times":{"Http\\Controllers\\Admin\\SwitchUserControllerTest::testRemoteUserLoginAs":0.087,"Http\\Controllers\\Admin\\SwitchUserControllerTest::testUserRemoteBack":0.041}}

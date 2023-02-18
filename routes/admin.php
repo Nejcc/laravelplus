@@ -28,5 +28,8 @@ Route::name('admin.')->group(function (){
      */
     Route::get('/permissions', [App\Http\Controllers\Admin\PermissionController::class, 'index'])->name('permissions.index');
 
-
+    /*
+     * Switch user
+     */
+    Route::post('/switch-user', [App\Http\Controllers\Admin\SwitchUserController::class, 'loginAs'])->name('switch-user.login-as');
 });
