@@ -8,7 +8,7 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        Roles
+                        Roles / {{ ucfirst($role->name) }} / users
                     </h2>
 {{--                    <div class="text-muted mt-1">1-12 of 241 photos</div>--}}
                 </div>
@@ -29,6 +29,9 @@
                                   </span>
                             </div>
                         </div>
+                        <a href="{{ route('admin.roles.index') }}" class="btn btn-secondary mx-1">
+                            Back
+                        </a>
                         <a href="#" class="btn btn-primary">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -64,16 +67,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($roles as $role)
+                            @foreach($role->users as $user)
                                 <tr>
-                                    <th>{{ $role->id }}</th>
-                                    <td>{{ $role->name }}</td>
-                                    <td>{{ $role->guard_name }}</td>
-                                    <td><a href="{{route('admin.roles.users.show', $role->slug)}}">{{ $role->users_count }}</a></td>
-                                    <td class="d-flex">
-                                        <a href="{{ route('admin.roles.show', $role->slug) }}" class="btn btn-primary mx-1">Show</a>
-                                        <a href="#" class="btn btn-primary mx-1">Edit</a>
-                                    </td>
+                                    <th>{{ $user->id }}</th>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->username }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

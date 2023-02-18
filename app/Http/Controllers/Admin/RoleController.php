@@ -28,18 +28,27 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::paginate(25);
+        $roles = Role::query()->withCount('users')->get();
+
+//        dd($roles);
 
         return view('admin.roles.index', compact('roles'));
     }
 
-    public function show(Role $role)
+    public function users(Role $role)
     {
-        $permission_groups = Permission::all()->groupBy('group_name');
+        $role->load('users');
 
-        $sql = "SELECT permission_id FROM role_has_permissions WHERE role_id = ". $role->id;
-        $role_permissions = collect(DB::select($sql))->unique()->pluck('permission_id')->toArray();
-
-        return view('admin.roles.roles_has_permissions', compact(['permission_groups', 'role_permissions', 'role']));
+        return view('admin.roles.users', compact('role'));
     }
+
+//    public function show(Role $role)
+//    {
+////        $permission_groups = Permission::all()->groupBy('group_name');
+//
+//        $sql = "SELECT permission_id FROM role_has_permissions WHERE role_id = ". $role->id;
+//        $role_permissions = collect(DB::select($sql))->unique()->pluck('permission_id')->toArray();
+//
+//        return view('admin.roles.roles_has_permissions', compact(['permission_groups', 'role_permissions', 'role']));
+//    }
 }
