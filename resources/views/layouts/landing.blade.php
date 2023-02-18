@@ -211,7 +211,7 @@
                 <p class="mt-3 text-muted" style="font-size: 18px">
                     Skip init, start working!
                 </p>
-                <a href="https://github.com/nejcc/laravelplus" target="_blank" class="btn btn-ghost-green">Join us on Github</a>
+                <a href="https://github.com/nejcc/laravelplus" rel="noopener" target="_blank" class="btn btn-ghost-green">Join us on Github</a>
                 <a href="{{ route('home') }}" target="_blank" class="btn btn-ghost-green">Explore LaravelPlus</a>
 
                 <p class="mt-3 text-white text-muted">Laravel v{{ Illuminate\Foundation\Application::VERSION }}</p>
