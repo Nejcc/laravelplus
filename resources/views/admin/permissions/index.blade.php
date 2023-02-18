@@ -53,7 +53,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="table-responsive">
-                        <table class="table table-vcenter card-table table-striped">
+                        <table class="table table-vcenter card-table table-striped" aria-describedby="permission">
                             <thead>
                             <tr>
                                 <th>#</th>

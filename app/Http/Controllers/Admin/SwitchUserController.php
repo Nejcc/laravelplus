@@ -28,12 +28,12 @@ class SwitchUserController extends Controller
     {
         $request->validate([
             'switch_user_to' => 'required|integer',
-            'main_user_id' => 'required|integer',
+            'main_user_id'   => 'required|integer',
         ]);
 
         auth()->loginUsingId((int)$request->input('switch_user_to'), true);
-        session()->put('switch_user_to',(int)$request->input('switch_user_to'));
-        session()->put('main_user_id',(int)$request->input('main_user_id'));
+        session()->put('switch_user_to', (int)$request->input('switch_user_to'));
+        session()->put('main_user_id', (int)$request->input('main_user_id'));
         return redirect()->route('home');
     }
 
