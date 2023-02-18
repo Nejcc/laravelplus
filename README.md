@@ -1,4 +1,14 @@
 
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Nejcc_laravelplus&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Nejcc_laravelplus)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Nejcc_laravelplus&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Nejcc_laravelplus)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Nejcc_laravelplus&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Nejcc_laravelplus)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Nejcc_laravelplus&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Nejcc_laravelplus)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Nejcc_laravelplus&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Nejcc_laravelplus)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Nejcc_laravelplus&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Nejcc_laravelplus)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Nejcc_laravelplus&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Nejcc_laravelplus)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Nejcc_laravelplus&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Nejcc_laravelplus)
+
 ## About LaravelPlus
 
 Introducing our pre-configured Laravel framework, designed to help developers get up and running with Laravel quickly and easily. Our pre-configured Laravel framework comes with all the essential features and components you need to start building web applications with Laravel right away.
