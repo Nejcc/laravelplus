@@ -30,4 +30,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/tos', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
 
-Route::post('/switch-user-back', [App\Http\Controllers\Admin\SwitchUserController::class, 'back'])->name('switch-user.back');
+Route::post('/switch-user-back', [\App\Http\Controllers\Admin\Users\SwitchUserController::class, 'back'])->name('switch-user.back');

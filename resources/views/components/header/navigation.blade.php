@@ -124,6 +124,9 @@
                                     <a class="dropdown-item" href="{{ route('admin.permissions.index') }}">
                                         {{ __('Permissions') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">
+                                        {{ __('Users') }}
+                                    </a>
                                 </div>
                             </div>
                         </div>
