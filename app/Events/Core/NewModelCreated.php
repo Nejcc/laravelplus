@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Core;
 
 use App\Models\User;
-use App\Notifications\NewUserNotification;
-use Illuminate\Broadcasting\Channel;
+use App\Notifications\Users\NewUserNotification;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
