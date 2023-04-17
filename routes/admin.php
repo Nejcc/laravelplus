@@ -17,19 +17,22 @@ Route::name('admin.')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
+
+    Route::resource('users', \App\Http\Controllers\Admin\Users\UserController::class);
+
     /*
      * Roles
      */
-    Route::get('/roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
-    Route::get('/roles/{role:slug}/users', [App\Http\Controllers\Admin\RoleController::class, 'users'])->name('roles.users.show');
-    Route::get('/roles/{role:slug}', [App\Http\Controllers\Admin\RoleController::class, 'show'])->name('roles.show');
+    Route::get('/roles', [\App\Http\Controllers\Admin\Roles\RoleController::class, 'index'])->name('roles.index');
+    Route::get('/roles/{role:slug}/users', [\App\Http\Controllers\Admin\Roles\RoleController::class, 'users'])->name('roles.users.show');
+    Route::get('/roles/{role:slug}', [\App\Http\Controllers\Admin\Roles\RoleController::class, 'show'])->name('roles.show');
     /*
      * Permissions
      */
-    Route::get('/permissions', [App\Http\Controllers\Admin\PermissionController::class, 'index'])->name('permissions.index');
+    Route::get('/permissions', [\App\Http\Controllers\Admin\Permissions\PermissionController::class, 'index'])->name('permissions.index');
 
     /*
      * Switch user
      */
-    Route::post('/switch-user', [App\Http\Controllers\Admin\SwitchUserController::class, 'loginAs'])->name('switch-user.login-as');
+    Route::post('/switch-user', [\App\Http\Controllers\Admin\Users\SwitchUserController::class, 'loginAs'])->name('switch-user.login-as');
 });
