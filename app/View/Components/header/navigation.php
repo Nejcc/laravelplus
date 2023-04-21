@@ -15,7 +15,6 @@ final class navigation extends Component
      */
     public function __construct()
     {
-
     }
 
     /**

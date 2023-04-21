@@ -12,7 +12,7 @@ return [
     ],
     'login'   => [
         'ilustration' => false,
-        'cover' => true,
+        'cover'       => true,
     ],
     'regiter' => [
         'ilustration' => false,
