@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Facade;
+declare(strict_types=1);
 
 return [
 
@@ -12,7 +12,7 @@ return [
     ],
     'login'   => [
         'ilustration' => false,
-        'cover' => true,
+        'cover'       => true,
     ],
     'regiter' => [
         'ilustration' => false,

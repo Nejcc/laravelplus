@@ -1,19 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
+use App\Models\User;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use App\Models\User;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
 
-
-class UserTableSeeder extends Seeder
+final class UserTableSeeder extends Seeder
 {
     private $roles = ['super-admin', 'admin', 'editor', 'writer', 'translator', 'power user', 'user'];
+
     private $permissionsOnGroup = [
         'super-admin' => [
             'view'   => [
@@ -66,7 +66,7 @@ class UserTableSeeder extends Seeder
                 'user',
             ],
         ],
-        'user'        => []
+        'user'        => [],
     ];
 
     /**
@@ -74,15 +74,12 @@ class UserTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->generateAllRoles();
         $this->generateAllUsers();
     }
 
-    /**
-     * @return void
-     */
     private function generateAllRoles(): void
     {
 //        $god = Role::create(['name' => 'super-admin']);
@@ -104,9 +101,6 @@ class UserTableSeeder extends Seeder
         }
     }
 
-    /**
-     * @return void
-     */
     private function GenerateAllUsers(): void
     {
         $users = [
@@ -129,7 +123,7 @@ class UserTableSeeder extends Seeder
     private function generateUserEmailAddress($user)
     {
         if ($user['email'] === null) {
-            return $user['username'] . '@' . config('app.domain');
+            return $user['username'].'@'.config('app.domain');
         }
 
         return $user['email'];
@@ -137,8 +131,8 @@ class UserTableSeeder extends Seeder
 
     private function generateUserPassword($user)
     {
-        if ($user['password'] == null) {
-            return bcrypt($user['username'] . config('auth.password_default'));
+        if ($user['password'] === null) {
+            return bcrypt($user['username'].config('auth.password_default'));
         }
 
         return bcrypt($user['password']);

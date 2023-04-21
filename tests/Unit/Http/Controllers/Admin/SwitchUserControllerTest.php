@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Http\Controllers\Admin;
 
 use App\Models\Role;
@@ -7,12 +9,11 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-
-class SwitchUserControllerTest extends TestCase
+final class SwitchUserControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRemoteUserLoginAs()
+    public function testRemoteUserLoginAs(): void
     {
         $this->withExceptionHandling();
         Role::create(['name' => 'super-admin', 'slug' => 'super-admin']);
@@ -42,10 +43,10 @@ class SwitchUserControllerTest extends TestCase
         $this->assertEquals($mainUser->id, session('main_user_id'));
     }
 
-    public function testUserRemoteBack()
+    public function testUserRemoteBack(): void
     {
         Role::create(['name' => 'super-admin', 'slug' => 'super-admin']);
-// Create two users to use for testing
+        // Create two users to use for testing
         $mainUser = User::factory()->create();
         $mainUser->assignRole('super-admin');
 

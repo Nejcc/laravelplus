@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Events\Core;
 
 use App\Models\User;
@@ -10,16 +12,17 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
 // TODO: wip
-class NewModelCreated
+final class NewModelCreated
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * Create a new event instance.
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -34,7 +37,7 @@ class NewModelCreated
         ];
     }
 
-    public function handle()
+    public function handle(): void
     {
         $user = User::find($this->model->user_id);
         $user->notify(new NewUserNotification($this->model));
