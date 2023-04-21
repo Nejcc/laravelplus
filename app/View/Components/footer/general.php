@@ -15,7 +15,6 @@ final class general extends Component
      */
     public function __construct()
     {
-
     }
 
     /**
