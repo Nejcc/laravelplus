@@ -14,14 +14,15 @@ use Illuminate\Queue\SerializesModels;
 // TODO: wip
 final class NewModelCreated
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * Create a new event instance.
      */
     public function __construct()
     {
-
     }
 
     /**

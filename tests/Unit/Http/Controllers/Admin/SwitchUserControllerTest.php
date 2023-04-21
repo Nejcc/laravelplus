@@ -46,7 +46,7 @@ final class SwitchUserControllerTest extends TestCase
     public function testUserRemoteBack(): void
     {
         Role::create(['name' => 'super-admin', 'slug' => 'super-admin']);
-// Create two users to use for testing
+        // Create two users to use for testing
         $mainUser = User::factory()->create();
         $mainUser->assignRole('super-admin');
 

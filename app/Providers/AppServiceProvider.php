@@ -16,7 +16,6 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-
     }
 
     /**
@@ -25,17 +24,17 @@ final class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /**
-         * prevent N+1  on develop
+         * prevent N+1  on develop.
          */
-        Model::preventLazyLoading( ! app()->isProduction());
+        Model::preventLazyLoading(!app()->isProduction());
 
         /**
-         * Overide paginator
+         * Overide paginator.
          */
 //        Paginator::defaultView('vendor.pagination.bootstrap-5');
 
         /**
-         * Config for database
+         * Config for database.
          */
         Schema::defaultStringLength(191);
 //        Builder::defaultStringLength(191);

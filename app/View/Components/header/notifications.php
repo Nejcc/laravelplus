@@ -15,7 +15,6 @@ final class notifications extends Component
      */
     public function __construct()
     {
-
     }
 
     /**
