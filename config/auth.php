@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -19,7 +21,6 @@ return [
     ],
 
     'password_default' => env('PASSWORD_DEFAULT', '******'),
-
 
     /*
     |--------------------------------------------------------------------------

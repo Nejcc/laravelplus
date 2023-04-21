@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -17,9 +19,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
-
     'domain' => env('APP_DOMAIN', 'example.com'),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ return [
     */
 
     'theme' => [
-        'path' => env('APP_THEME_PATH', 'themes/v1/')
+        'path' => env('APP_THEME_PATH', 'themes/v1/'),
     ],
 
     /*

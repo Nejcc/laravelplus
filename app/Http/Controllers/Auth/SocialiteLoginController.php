@@ -1,17 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
-class SocialiteLoginController extends Controller
+final class SocialiteLoginController extends Controller
 {
     /**
      * @return RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
@@ -22,7 +22,6 @@ class SocialiteLoginController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return RedirectResponse
      */
     public function handleGithubProviderCallback(Request $request)
@@ -37,7 +36,6 @@ class SocialiteLoginController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return RedirectResponse
      */
     public function handleFacebookProviderCallback(Request $request)
@@ -51,12 +49,7 @@ class SocialiteLoginController extends Controller
         return redirect()->to('/home');
     }
 
-    /**
-     * @param $socialUser
-     * @param $provider
-     * @return User
-     */
-    private function findOrCreateUser($socialUser, $provider) : User
+    private function findOrCreateUser($socialUser, $provider): User
     {
         $authUser = User::where('provider_id', $socialUser->getId())->first();
 

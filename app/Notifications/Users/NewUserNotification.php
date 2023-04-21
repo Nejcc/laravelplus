@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications\Users;
 
 use Illuminate\Bus\Queueable;
@@ -7,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 // TODO: wip
-class NewUserNotification extends Notification
+final class NewUserNotification extends Notification
 {
     use Queueable;
 
@@ -16,7 +18,6 @@ class NewUserNotification extends Notification
     /**
      * Create a new notification instance.
      *
-     * @param  array  $model
      * @return void
      */
     public function __construct(array $model)
@@ -39,7 +40,7 @@ class NewUserNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->action('Notification Action', url('/'))
             ->line('Thank you for using our application!');
     }
@@ -54,7 +55,7 @@ class NewUserNotification extends Notification
         return [
             'title'   => 'New Model Created',
             'message' => 'A new model has been created',
-            'url'     => url('/models/' . $this->model->id),
+            'url'     => url('/models/'.$this->model->id),
         ];
     }
 

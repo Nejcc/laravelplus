@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', fn () => view('welcome'))->name('welcome');
 
 Auth::routes();
 
@@ -24,7 +24,6 @@ Route::get('login/github/callback', [\App\Http\Controllers\Auth\SocialiteLoginCo
 
 //Route::get('login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
 //Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookProviderCallback');
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
