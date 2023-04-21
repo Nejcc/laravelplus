@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+final class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -58,7 +59,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name'     => 'required',
-            'email'    => 'required|email|unique:users,email,' . $user->id,
+            'email'    => 'required|email|unique:users,email,'.$user->id,
             'password' => 'nullable',
         ]);
 
@@ -73,5 +74,4 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
-
 }

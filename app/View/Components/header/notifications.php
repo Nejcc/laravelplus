@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components\header;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class notifications extends Component
+final class notifications extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
