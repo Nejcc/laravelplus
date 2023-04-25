@@ -3,68 +3,81 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+use File;
 
 class CreatePluginCommand extends Command
 {
-    protected $signature = 'plugin:create {name}';
+    protected $signature = 'make:plugin {name}';
 
-    protected $description = 'Create a new plugin';
+    protected $description = 'Create a new Laravel plugin';
 
     public function handle()
     {
-        $name = $this->argument('name');
+        $pluginName = $this->argument('name');
+        $pluginClassName = Str::studly($pluginName);
+        $pluginNamespace = 'App\\Plugins\\' . $pluginClassName . '\\';
+        $pluginPath = app_path('Plugins/' . ucfirst($pluginClassName) . '/');
 
-        $this->createPluginDirectory($name);
-        $this->createPluginFiles($name);
+        // Check if plugin class already exists
+        if (class_exists($pluginNamespace . $pluginClassName)) {
+            $this->error('Plugin class already exists.');
+            return;
+        }
+
+        $this->createPluginDirectories();
+        $this->createPluginFiles($pluginName, $pluginClassName, $pluginNamespace);
+
+        $this->info($pluginClassName . ' plugin created successfully.');
     }
 
-    protected function createPluginDirectory($name)
+    protected function createPluginDirectories()
     {
-        $directory = app_path('Plugins/' . ucfirst($name));
+        $directories = [
+            app_path('Plugins'),
+//            app_path('Plugins/.gitignore')
+        ];
 
-        if (!file_exists($directory)) {
-            mkdir($directory, 0755, true);
+        foreach ($directories as $directory) {
+
+            if (! File::isDirectory($directory)) {
+                File::makeDirectory($directory, 0755, true);
+            }
         }
     }
 
-    protected function createPluginFiles($name)
+    protected function createPluginFiles($name, $className, $namespace)
     {
-        $namespace = 'App\\Plugins\\' . ucfirst($name);
+        $files = [
+            'config',
+            'Controllers/ExampleController',
+            'Models/ExampleModel',
+            'routes',
+            'views/index',
+        ];
 
-        $this->call('make:controller', [
-            'name'   => $namespace . '\\Controllers\\HomeController',
-            '--stub' => 'controller.stub',
-        ]);
-        $this->call('make:model', [
-            'name'   => $namespace . '\\Models\\' . ucfirst($name),
-            '--stub' => 'model.stub',
-        ]);
-
-        $this->call('make:middleware', [
-            'name'   => $namespace . '\\Middleware\\' . ucfirst($name),
-            '--stub' => 'middleware.stub',
-        ]);
-
-        $this->call('make:seeder', [
-            'name'   => $namespace . '\\Database\\Seeders\\' . ucfirst($name) . 'Seeder',
-            '--stub' => 'seeder.stub',
-        ]);
-
-        // Generate views
-        $viewsDirectory = app_path('Plugins/' . ucfirst($name) . '/views/');
-        if (!file_exists($viewsDirectory)) {
-            mkdir($viewsDirectory, 0755, true);
+        foreach ($files as $file) {
+            $this->createPluginFile($name, $className, $namespace, $file);
         }
-        file_put_contents($viewsDirectory . 'index.blade.php', '');
+    }
 
-        // Generate routes
-        $routesFile = app_path('Plugins/' . ucfirst($name) . '/routes/web.php');
-        if (!file_exists($routesFile)) {
-            file_put_contents($routesFile, "<?php\n\n");
+    protected function createPluginFile($name, $className, $namespace, $file)
+    {
+        $pluginPath = app_path('Plugins/' . ucfirst($className) . '/');
+        $path = $pluginPath . Str::replaceArray('/', ['\\', ''], $file) . '.php';
+
+        if (! File::isDirectory(dirname($path))) {
+            File::makeDirectory(dirname($path), 0755, true);
         }
 
-        $this->info('Plugin created successfully!');
+        $stub = File::get(resource_path('stubs/plugin/' . $file . '.stub'));
+
+        $content = str_replace(
+            ['{{className}}', '{{namespace}}', '{{pluginName}}'],
+            [$className, $namespace, $name],
+            $stub
+        );
+
+        File::put($path, $content);
     }
 }
-
-

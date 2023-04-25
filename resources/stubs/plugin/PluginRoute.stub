@@ -1,0 +1,6 @@
+<?php
+
+use {{namespace}}\{{className}}Controller;
+use Illuminate\Support\Facades\Route;
+
+Route::get('{{pluginName}}', [{{className}}Controller::class, 'index']);

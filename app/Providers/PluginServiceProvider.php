@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class PluginServiceProvider extends ServiceProvider
 {
@@ -15,9 +16,20 @@ class PluginServiceProvider extends ServiceProvider
     {
         $plugins = config('plugins');
 
-        foreach ($plugins as $plugin) {
-            $namespace = 'App\\Plugins\\' . ucfirst($plugin) . '\\';
-            $path = app_path('Plugins/' . ucfirst($plugin) . '/');
+        foreach ($plugins as $key => $plugin) {
+
+            $className = Str::studly($key);
+
+
+            $namespace = 'App\\Plugins\\' . ucfirst($className) . '\\';
+            $path = app_path('Plugins/' . ucfirst($className) . '/');
+
+            if (class_exists($namespace . $className)) {
+                $this->error('Plugin class already exists.');
+                return;
+            }
+
+//            dd($path);
 
             // Load routes
 

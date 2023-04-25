@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{pluginName}} Plugin Index View</title>
+</head>
+<body>
+    <h1>{{pluginName}} Plugin Index View</h1>
+</body>
+</html>

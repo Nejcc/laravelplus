@@ -1,0 +1,14 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Plugins\PluginController;
+
+class {{className}}Controller extends PluginController
+{
+    public function index()
+    {
+        return view('plugins::{{viewPath}}');
+        return view('{{viewPath}}');
+    }
+}
