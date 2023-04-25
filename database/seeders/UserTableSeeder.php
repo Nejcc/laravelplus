@@ -71,8 +71,6 @@ final class UserTableSeeder extends Seeder
 
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run(): void
     {
@@ -87,9 +85,9 @@ final class UserTableSeeder extends Seeder
         foreach ($this->roles as $role) {
             $roleSlug = Str::slug($role);
             $newRole = Role::create(['name' => $role, 'slug' => $roleSlug]);
-            if (!empty($this->permissionsOnGroup[$role])) {
+            if ( ! empty($this->permissionsOnGroup[$role])) {
                 foreach ($this->permissionsOnGroup[$role] as $key => $permission) {
-                    if (!empty($permission[0])) {
+                    if ( ! empty($permission[0])) {
                         foreach ($permission as $p) {
                             $permissionSlug = Str::slug("{$key} {$p}");
                             $newPermission = Permission::updateOrCreate(['name' => "{$key} {$p}", 'slug' => $permissionSlug, 'group_name' => $p]);

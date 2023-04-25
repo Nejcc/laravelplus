@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
+use File;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use File;
 
-class CreatePluginCommand extends Command
+final class CreatePluginCommand extends Command
 {
     protected $signature = 'make:plugin {name}';
 
@@ -14,19 +16,20 @@ class CreatePluginCommand extends Command
 
     private array $pluginData = [];
 
-    public function handle()
+    public function handle(): void
     {
         $pluginName = $this->argument('name');
 
-        if (!File::isDirectory('Plugin')) {
+        if ( ! File::isDirectory('Plugin')) {
             File::makeDirectory('Plugin', 0755, true);
         }
 
         $this->getData($pluginName);
 
         // Check if plugin class already exists
-        if (class_exists($this->pluginData['namespace'] . $this->pluginData['class_name'])) {
-            $this->error('Plugin ' . $this->pluginData['class_name'] . ' class already exists.');
+        if (class_exists($this->pluginData['namespace'].$this->pluginData['class_name'])) {
+            $this->error('Plugin '.$this->pluginData['class_name'].' class already exists.');
+
             return;
         }
 
@@ -35,19 +38,19 @@ class CreatePluginCommand extends Command
 
         dd($this->pluginData);
 
-        $this->info($pluginClassName . ' plugin created successfully.');
+        $this->info($pluginClassName.' plugin created successfully.');
     }
 
-    protected function createPluginDirectories()
+    protected function createPluginDirectories(): void
     {
         foreach ($this->pluginData['dirs'] as $directory) {
-            if (!File::isDirectory(ucfirst($this->pluginData['path'] . $directory))) {
-                File::makeDirectory($this->pluginData['path'] . ucfirst($directory), 0755, true);
+            if ( ! File::isDirectory(ucfirst($this->pluginData['path'].$directory))) {
+                File::makeDirectory($this->pluginData['path'].ucfirst($directory), 0755, true);
             }
         }
     }
 
-    protected function createPluginFiles()
+    protected function createPluginFiles(): void
     {
 //        dd($this->pluginData['files'], $this->pluginData['path']);
         foreach ($this->pluginData['files'] as $key => $file) {
@@ -65,7 +68,7 @@ class CreatePluginCommand extends Command
                     break;
                 case 'views':
 //                    dd($filePath, $file);
-                    foreach ($file as $view){
+                    foreach ($file as $view) {
                         $filePath = $this->pluginData['path'];
                         $this->checkFilePath($filePath, $view);
                         $this->makeView($filePath, $view);
@@ -80,24 +83,18 @@ class CreatePluginCommand extends Command
     }
 
     /**
-     * @param $name
-     * @param $className
-     * @param $namespace
-     * @param $file
-     * @param $namespaceNoEnding
      * @return void
      */
-    protected function createPluginFile($name, $className, $namespace, $file, $namespaceNoEnding)
+    protected function createPluginFile($name, $className, $namespace, $file, $namespaceNoEnding): void
     {
-        $pluginPath = app_path('Plugins/' . ucfirst($className) . '/');
-        $path = $pluginPath . Str::replaceArray('/', ['\\', ''], $file);
+        $pluginPath = app_path('Plugins/'.ucfirst($className).'/');
+        $path = $pluginPath.Str::replaceArray('/', ['\\', ''], $file);
 
-
-        if (!File::isDirectory($pluginPath)) {
+        if ( ! File::isDirectory($pluginPath)) {
             File::makeDirectory($pluginPath, 0755, true);
         }
 
-        $stub = File::get(resource_path('stubs/plugin/' . $file . '.stub'));
+        $stub = File::get(resource_path('stubs/plugin/'.$file.'.stub'));
 
         $content = str_replace(
             ['{{className}}', '{{namespace}}', '{{pluginName}}', '{{namespaceNoEnding}}'],
@@ -106,17 +103,17 @@ class CreatePluginCommand extends Command
         );
 
         if ($file === 'config') {
-            $filePath = $path . '/' . Str::kebab($className) . '.php';
-            if (!file_exists($filePath)) {
-                if (!File::isDirectory($path)) {
+            $filePath = $path.'/'.Str::kebab($className).'.php';
+            if ( ! file_exists($filePath)) {
+                if ( ! File::isDirectory($path)) {
                     File::makeDirectory($path, 0755, true);
                 }
                 file_put_contents($filePath, $content);
             }
         } elseif ($file === 'routes') {
-            $filePath = $path . '/web.php';
-            if (!file_exists($filePath)) {
-                if (!File::isDirectory($path)) {
+            $filePath = $path.'/web.php';
+            if ( ! file_exists($filePath)) {
+                if ( ! File::isDirectory($path)) {
                     File::makeDirectory($path, 0755, true);
                 }
                 file_put_contents($filePath, $content);
@@ -124,38 +121,34 @@ class CreatePluginCommand extends Command
         }
     }
 
-    /**
-     * @param bool|array|string|null $pluginName
-     * @return void
-     */
     private function getData(bool|array|string|null $pluginName): void
     {
         $pluginClassName = Str::studly($pluginName);
 
         $suffix = 'Plugin';
 
-        $this->pluginData['plugin_name'] = $this->argument('name') . 'Plugin';
+        $this->pluginData['plugin_name'] = $this->argument('name').'Plugin';
         $this->pluginData['class_name'] = $pluginClassName;
-        $this->pluginData['namespace'] = 'App\\Plugins\\' . $pluginClassName.'Plugin';
-        $this->pluginData['path'] = app_path('Plugins/' . ucfirst($pluginClassName) . $suffix . '/');
+        $this->pluginData['namespace'] = 'App\\Plugins\\'.$pluginClassName.'Plugin';
+        $this->pluginData['path'] = app_path('Plugins/'.ucfirst($pluginClassName).$suffix.'/');
         $this->pluginData['files'] = [
-            'controller' => Str::studly($pluginName) . 'Controller.php',
-            'model'      => Str::studly($pluginName) . '.php',
+            'controller' => Str::studly($pluginName).'Controller.php',
+            'model'      => Str::studly($pluginName).'.php',
             'route'      => [
-                "web" => 'web.php',
-                "api" => 'api.php'
+                'web' => 'web.php',
+                'api' => 'api.php',
             ],
             'views'      => [
-                'index'  => Str::kebab($pluginName) . DIRECTORY_SEPARATOR . 'index.blade.php',
-                'show'   => Str::kebab($pluginName) . DIRECTORY_SEPARATOR . 'show.blade.php',
-                'create' => Str::kebab($pluginName) . DIRECTORY_SEPARATOR . 'create.blade.php',
-                'update' => Str::kebab($pluginName) . DIRECTORY_SEPARATOR . 'update.blade.php',
+                'index'  => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'index.blade.php',
+                'show'   => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'show.blade.php',
+                'create' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'create.blade.php',
+                'update' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'update.blade.php',
             ],
             'blade'  => [
-                'index'  => Str::kebab($pluginName) . '::' . 'index',
-                'show'   => Str::kebab($pluginName) . '::' . 'show',
-                'create' => Str::kebab($pluginName) . '::' . 'create',
-                'update' => Str::kebab($pluginName) . '::' . 'update',
+                'index'  => Str::kebab($pluginName).'::'.'index',
+                'show'   => Str::kebab($pluginName).'::'.'show',
+                'create' => Str::kebab($pluginName).'::'.'create',
+                'update' => Str::kebab($pluginName).'::'.'update',
             ],
 
         ];
@@ -163,33 +156,23 @@ class CreatePluginCommand extends Command
             'controllers',
             'models',
             'views',
-            'routes'
+            'routes',
         ];
     }
 
-    /**
-     * @param $filePath
-     * @param mixed $file
-     * @return void
-     */
     private function checkFilePath($filePath, mixed $file): void
     {
-        if (file_exists($filePath . $file)) {
-            $this->info('File [' . $filePath . $file . '] already exists!');
+        if (file_exists($filePath.$file)) {
+            $this->info('File ['.$filePath.$file.'] already exists!');
         }
     }
 
-    /**
-     * @param string $filePath
-     * @param mixed $file
-     * @return void
-     */
     private function makeController(string $filePath, mixed $file): void
     {
         $full_file_path = $filePath.'Controllers/'.$file;
 
-        if (!file_exists($full_file_path)) {
-            if (!File::isDirectory($filePath)) {
+        if ( ! file_exists($full_file_path)) {
+            if ( ! File::isDirectory($filePath)) {
                 File::makeDirectory($filePath, 0755, true);
             }
 
@@ -205,17 +188,12 @@ class CreatePluginCommand extends Command
         }
     }
 
-    /**
-     * @param string $filePath
-     * @param mixed $file
-     * @return void
-     */
     private function makeModel(string $filePath, mixed $file): void
     {
         $full_file_path = $filePath.'Models/'.$file;
 
-        if (!file_exists($full_file_path)) {
-            if (!File::isDirectory($filePath)) {
+        if ( ! file_exists($full_file_path)) {
+            if ( ! File::isDirectory($filePath)) {
                 File::makeDirectory($filePath, 0755, true);
             }
 
@@ -231,19 +209,13 @@ class CreatePluginCommand extends Command
         }
     }
 
-    /**
-     * @param string $filePath
-     * @param mixed $file
-     * @return void
-     */
     private function makeView(string $filePath, mixed $file): void
     {
         $full_file_path = $filePath.'Views/'.$file;
-        $view_file_path = $filePath.'Views/'.strtolower($this->pluginData['class_name']);
+        $view_file_path = $filePath.'Views/'.mb_strtolower($this->pluginData['class_name']);
 
-
-        if (!file_exists($full_file_path)) {
-            if (!File::isDirectory($view_file_path)) {
+        if ( ! file_exists($full_file_path)) {
+            if ( ! File::isDirectory($view_file_path)) {
                 File::makeDirectory($view_file_path, 0755, true);
             }
 
