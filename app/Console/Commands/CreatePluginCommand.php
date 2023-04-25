@@ -50,8 +50,8 @@ class CreatePluginCommand extends Command
     {
         $files = [
             'config',
-            'Controllers/ExampleController',
-            'Models/ExampleModel',
+            'Controllers/Controller',
+            'Models/Model',
             'routes',
             'views/index',
         ];
