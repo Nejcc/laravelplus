@@ -16,6 +16,8 @@ class PluginServiceProvider extends ServiceProvider
     {
         $plugins = config('plugins');
 
+//        dd($plugins);
+
         foreach ($plugins as $key => $plugin) {
 
             $className = Str::studly($key);
@@ -61,9 +63,10 @@ class PluginServiceProvider extends ServiceProvider
                 $this->loadTranslationsFrom($path . 'lang', $namespace . 'lang');
             }
 
+//            dd($path);
             // Load controllers
-            if (is_dir($path . 'Controllers')) {
-                $this->app->make($namespace . 'Controllers\\HomeController');
+            if (is_file($path . 'Controllers')) {
+                $this->app->make($namespace . 'Controllers');
             }
         }
     }
