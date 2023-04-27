@@ -10,6 +10,6 @@ final class {{className}}Controller extends PluginController
 {
     public function index()
     {
-        return view('{{viewPath}}');
+        return view('{{viewNamespace}}');
     }
 }

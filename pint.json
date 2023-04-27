@@ -6,7 +6,8 @@
   ],
   "notName": [
     "*.js",
-    "*.html"
+    "*.html",
+    "App/Http/Controllers/Controller.php"
   ],
   "rules": {
     "align_multiline_comment": true,
