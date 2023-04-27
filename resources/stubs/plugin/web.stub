@@ -1,0 +1,8 @@
+<?php
+
+
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('{{classNameLowercase}}')->group(function () {
+    Route::get('/', [App\Plugins\ExamplePlugin\Controllers\ExampleController::class, 'index']);
+});

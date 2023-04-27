@@ -20,11 +20,14 @@ final class CreatePluginCommand extends Command
     {
         $pluginName = $this->argument('name');
 
+        $this->getData($pluginName);
+
+        $this->info('Create new plugin ['.$this->pluginData['class_name'].']');
+        $this->info(' ');
+
         if ( ! File::isDirectory('Plugin')) {
             File::makeDirectory('Plugin', 0755, true);
         }
-
-        $this->getData($pluginName);
 
         // Check if plugin class already exists
         if (class_exists($this->pluginData['namespace'].$this->pluginData['class_name'])) {
@@ -36,9 +39,10 @@ final class CreatePluginCommand extends Command
         $this->createPluginDirectories();
         $this->createPluginFiles();
 
-        dd($this->pluginData);
+//        dd($this->pluginData);
 
-        $this->info($pluginClassName.' plugin created successfully.');
+        $this->info(' ');
+        $this->info($this->pluginData['class_name'].' plugin created successfully.');
     }
 
     protected function createPluginDirectories(): void
@@ -59,12 +63,22 @@ final class CreatePluginCommand extends Command
                     $filePath = $this->pluginData['path'];
                     $this->checkFilePath($filePath, $file);
                     $this->makeController($filePath, $file);
+                    $this->info(' - Controller was created successfully');
                     break;
                 case 'model':
 //                    dd($filePath, $file);
                     $filePath = $this->pluginData['path'];
                     $this->checkFilePath($filePath, $file);
                     $this->makeModel($filePath, $file);
+                    $this->info(' - Model was created successfully');
+                    break;
+                case 'routes':
+                    foreach ($file as $route) {
+                        $filePath = $this->pluginData['path'];
+                        $this->checkFilePath($filePath, $route);
+                        $this->makeRoute($filePath, $route);
+                    }
+                    $this->info(' - Routes was created successfully');
                     break;
                 case 'views':
 //                    dd($filePath, $file);
@@ -73,6 +87,7 @@ final class CreatePluginCommand extends Command
                         $this->checkFilePath($filePath, $view);
                         $this->makeView($filePath, $view);
                     }
+                    $this->info(' - Views was created successfully');
                     break;
 
                 default:
@@ -82,9 +97,6 @@ final class CreatePluginCommand extends Command
         }
     }
 
-    /**
-     * @return void
-     */
     protected function createPluginFile($name, $className, $namespace, $file, $namespaceNoEnding): void
     {
         $pluginPath = app_path('Plugins/'.ucfirst($className).'/');
@@ -134,17 +146,21 @@ final class CreatePluginCommand extends Command
         $this->pluginData['files'] = [
             'controller' => Str::studly($pluginName).'Controller.php',
             'model'      => Str::studly($pluginName).'.php',
-            'route'      => [
+            'routes'      => [
                 'web' => 'web.php',
                 'api' => 'api.php',
             ],
             'views'      => [
-                'index'  => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'index.blade.php',
-                'show'   => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'show.blade.php',
-                'create' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'create.blade.php',
-                'update' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'update.blade.php',
+//                'index'  => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'index.blade.php',
+//                'show'   => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'show.blade.php',
+//                'create' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'create.blade.php',
+//                'update' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'update.blade.php',
+                'index'  => 'index.blade.php',
+                'show'   => 'show.blade.php',
+                'create' => 'create.blade.php',
+                'update' => 'update.blade.php',
             ],
-            'blade'  => [
+            'blade'      => [
                 'index'  => Str::kebab($pluginName).'::'.'index',
                 'show'   => Str::kebab($pluginName).'::'.'show',
                 'create' => Str::kebab($pluginName).'::'.'create',
@@ -179,10 +195,20 @@ final class CreatePluginCommand extends Command
             $stub = File::get(resource_path('stubs/plugin/controller.stub'));
 
             $content = str_replace(
-                ['{{className}}', '{{namespace}}', '{{pluginName}}', '{{viewPath}}'],
-                [$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index']],
+                ['{{className}}', '{{namespace}}', '{{pluginName}}', '{{viewPath}}', '{{viewNamespace}}'],
+                [$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index'], strtolower($this->pluginData['plugin_name']).'::index'],
                 $stub
             );
+
+//array:4 [ // app\Console\Commands\CreatePluginCommand.php:203
+//  0 => "Example"
+//  1 => "App\Plugins\ExamplePlugin"
+//  2 => "ExamplePlugin"
+//  3 => "example::index"
+//]
+
+
+//            dd([$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index']]);
 
             file_put_contents($full_file_path, $content);
         }
@@ -211,8 +237,16 @@ final class CreatePluginCommand extends Command
 
     private function makeView(string $filePath, mixed $file): void
     {
+//        "C:\wamp\www\laravelplus.com\app\Plugins/ExamplePlugin/" // app\Console\Commands\CreatePluginCommand.php:227
+//"example\index.blade.php" // app\Console\Commands\CreatePluginCommand.php:227
+
+//        dd($filePath, $file);
         $full_file_path = $filePath.'Views/'.$file;
-        $view_file_path = $filePath.'Views/'.mb_strtolower($this->pluginData['class_name']);
+//        dd($full_file_path);
+//        $view_file_path = $filePath.'Views/'.mb_strtolower(Str::kebab($this->pluginData['class_name']));
+        $view_file_path = $filePath.'Views/';
+
+//        dd($full_file_path, $view_file_path);
 
         if ( ! file_exists($full_file_path)) {
             if ( ! File::isDirectory($view_file_path)) {
@@ -224,6 +258,29 @@ final class CreatePluginCommand extends Command
             $content = str_replace(
                 ['{{className}}', '{{namespace}}', '{{pluginName}}'],
                 [$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name']],
+                $stub
+            );
+
+            file_put_contents($full_file_path, $content);
+        }
+    }
+
+    private function makeRoute(string $filePath, mixed $file): void
+    {
+        $full_file_path = $filePath.'Routes/'.$file;
+        $view_file_path = $filePath.'Routes/';
+        $stub = str_replace('.php', '.stub', $file);
+
+        if ( ! file_exists($full_file_path)) {
+            if ( ! File::isDirectory($view_file_path)) {
+                File::makeDirectory($view_file_path, 0755, true);
+            }
+
+            $stub = File::get(resource_path('stubs/plugin/'.$stub));
+
+            $content = str_replace(
+                ['{{className}}', '{{namespace}}', '{{pluginName}}','{{classNameLowercase}}'],
+                [$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], strtolower($this->pluginData['class_name'])],
                 $stub
             );
 
