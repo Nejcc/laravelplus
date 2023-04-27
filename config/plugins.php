@@ -1,10 +1,10 @@
-<?php
-
-declare(strict_types=1);
-
-return [
-    'ExamplePlugin' => [
-        'enabled' => true,
-        // add other configuration options for this plugin here
-    ],
-];
+<?php return array(
+    'ExamplePlugin' =>
+        array(
+            'enabled' => true,
+        ),
+    'NejcPlugin'    =>
+        array(
+            'enabled' => true,
+        ),
+);
