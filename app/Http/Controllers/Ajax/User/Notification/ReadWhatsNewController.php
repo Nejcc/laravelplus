@@ -5,15 +5,17 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Ajax\User\Notification;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 
 final class ReadWhatsNewController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request): RedirectResponse
     {
         $request->validate(['user_news' => 'int']);
 
@@ -21,6 +23,6 @@ final class ReadWhatsNewController extends Controller
         $user->is_read_news = true;
         $user->save();
 
-        return response(null, 200);
+        return redirect()->route('home');
     }
 }
