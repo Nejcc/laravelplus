@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Http\Controllers\Ajax\User\Notification;
 
 use App\Http\Controllers\Ajax\User\Notification\ReadWhatsNewController;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Tests\TestCase;
 
-class ReadWhatsNewControllerTest extends TestCase
+final class ReadWhatsNewControllerTest extends TestCase
 {
     use RefreshDatabase;
-    public function testReadNewsMarksUserAsRead()
+
+    public function testReadNewsMarksUserAsRead(): void
     {
         $this->withoutExceptionHandling();
         // Arrange
