@@ -102,8 +102,8 @@ final class UserTableSeeder extends Seeder
     private function GenerateAllUsers(): void
     {
         $users = [
-            ['name' => 'Admin', 'username' => 'admin', 'email' => null, 'password' => null, 'role' => 'super-admin'],
-            ['name' => 'user', 'username' => 'user', 'email' => null, 'password' => null, 'role' => 'user'],
+            ['name' => 'Admin', 'username' => 'admin', 'email' => null, 'password' => 'admin', 'role' => 'super-admin'],
+            ['name' => 'user', 'username' => 'user', 'email' => null, 'password' => 'user', 'role' => 'user'],
         ];
 
         foreach ($users as $user) {

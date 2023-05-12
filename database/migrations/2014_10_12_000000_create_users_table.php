@@ -23,6 +23,7 @@ return new class() extends Migration
             $table->string('provider')->nullable();
             $table->string('provider_id')->unique()->nullable();
             $table->string('avatar')->nullable();
+            $table->boolean('dark_theme')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
