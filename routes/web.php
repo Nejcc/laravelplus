@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/', fn () => view('welcome'))->name('welcome');
 
-
 Route::get('login/github', [\App\Http\Controllers\Auth\SocialiteLoginController::class, 'redirectToGithubProvider'])->name('sociolite.github.login');
 Route::get('login/github/callback', [\App\Http\Controllers\Auth\SocialiteLoginController::class, 'handleGithubProviderCallback'])->name('sociolite.github.callback');
 
@@ -28,6 +27,5 @@ Route::get('login/github/callback', [\App\Http\Controllers\Auth\SocialiteLoginCo
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/tos', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
-
 
 Route::post('/switch-user-back', [\App\Http\Controllers\Admin\Users\SwitchUserController::class, 'back'])->name('switch-user.back');

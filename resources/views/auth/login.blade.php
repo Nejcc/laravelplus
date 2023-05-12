@@ -6,7 +6,7 @@
             <div class="container-tight">
                 <div class="text-center mb-4">
                     <a href="{{ route('welcome') }}" class="navbar-brand navbar-brand-autodark">
-{{--                        <img src="{{ asset(config('app.theme.path').'static/logo.svg') }}" height="36" alt="">--}}
+                        {{--                        <img src="{{ asset(config('app.theme.path').'static/logo.svg') }}" height="36" alt="">--}}
                         <h2>{{ config('app.name') }}</h2>
                     </a>
                 </div>
@@ -16,43 +16,34 @@
                         <form action="{{ route('login') }}" method="post" autocomplete="off" novalidate>
                             @csrf
                             <div class="mb-3">
-                                <label class="form-label">{{ __('Email address') }}</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Enter your email') }}"
-                                       name="email" value="{{ old('email') }}" required  autocomplete="email" autofocus>
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <x-form.input-text
+                                name="email"
+                                label="Email address"
+                                ></x-form.input-text>
                             </div>
                             <div class="mb-2">
                                 <label class="form-label">
                                     {{ __('Password') }}
                                     @if (Route::has('password.request'))
-                                        <span class="form-label-description">
-                                          <a href="{{ route('password.request') }}">{{ __('I forgot password') }}</a>
-                                        </span>
+                                    <span class="form-label-description">
+                                        <a href="{{ route('password.request') }}">{{ __('I forgot password') }}</a>
+                                    </span>
                                     @endif
-
                                 </label>
-                                <div class="input-group input-group-flat">
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('Your password') }}"
-                                           name="password" required autocomplete="current-password">
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                <x-form.input-password
+                                    name="password"
+                                    label="password"
+                                ></x-form.input-password>
+                            </div>
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
-                                    <span class="input-group-text">
-                                      <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
-                                        <i class="ti ti-eye"></i>
-                                      </a>
-                                    </span>
-                                </div>
-                            </div>
+                            @enderror
                             <div class="mb-2">
                                 <label class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
+                                    <input type="checkbox" class="form-check-input" name="remember"
+                                           id="remember" {{ old('remember') ? 'checked' : '' }} />
                                     <span class="form-check-label">{{ __('Remember me on this device') }}</span>
                                 </label>
                             </div>
@@ -80,7 +71,8 @@
                     </div>
                 </div>
                 <div class="text-center text-muted mt-3">
-                    {{ __('Don\'t have account yet?') }} <a href="{{ route('register') }}" tabindex="-1">{{ __('Sign up') }}</a>
+                    {{ __('Don\'t have account yet?') }} <a href="{{ route('register') }}"
+                                                            tabindex="-1">{{ __('Sign up') }}</a>
                 </div>
             </div>
         </div>

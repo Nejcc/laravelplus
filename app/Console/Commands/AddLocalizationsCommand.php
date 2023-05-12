@@ -15,9 +15,6 @@ final class AddLocalizationsCommand extends Command
 
     protected $description = 'Add localization support for a database table - ';
 
-    /**
-     * @return void
-     */
     public function handle(): void
     {
         /** @var TYPE_NAME $table */

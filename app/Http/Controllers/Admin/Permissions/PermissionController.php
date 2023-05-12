@@ -27,7 +27,7 @@ final class PermissionController extends Controller
      */
     public function index()
     {
-//        $permission_groups = Permission::all()->groupBy('group_name');
+        //        $permission_groups = Permission::all()->groupBy('group_name');
         $permission_groups = Permission::all();
 
         return view('admin.permissions.index', compact(['permission_groups']));
