@@ -20,8 +20,6 @@ return new class() extends Migration
             $table->string('username')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('provider')->nullable();
-            $table->string('provider_id')->unique()->nullable();
             $table->string('avatar')->nullable();
             $table->boolean('is_read_news')->default(false);
             $table->rememberToken();

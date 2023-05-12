@@ -20,5 +20,7 @@ final class ReadWhatsNewController extends Controller
         $user = auth()->user();
         $user->is_read_news = true;
         $user->save();
+
+        return response(null, 200);
     }
 }
