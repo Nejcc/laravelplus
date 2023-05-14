@@ -6,16 +6,17 @@
   ],
   "notName": [
     "*.js",
-    "*.html",
-    "App/Http/Controllers/Controller.php"
+    "*.html"
+  ],
+  "notPath": [
+    "app/Http/Controllers/Controller.php",
+    "app/Plugins/PluginController.php"
   ],
   "rules": {
     "align_multiline_comment": true,
     "array_indentation": true,
     "array_syntax": true,
-
     "binary_operator_spaces": false,
-
     "blank_line_after_namespace": true,
     "blank_line_after_opening_tag": true,
     "combine_consecutive_issets": true,

@@ -3,7 +3,7 @@
 @section('title', __('Dashboard'))
 
 @section('content')
-<h1>{{pluginName}} Plugin Index View</h1>
+<h1>NejcPlugin Plugin Index View</h1>
 @endsection
 
 @section('modal')

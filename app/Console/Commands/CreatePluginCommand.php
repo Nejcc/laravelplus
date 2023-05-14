@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use Exception;
 use File;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -16,6 +15,7 @@ final class CreatePluginCommand extends Command
     protected $description = 'Create a new Laravel plugin';
 
     private array $pluginData = [];
+
     private bool $error = false;
 
     public function handle(): void
@@ -27,16 +27,16 @@ final class CreatePluginCommand extends Command
         $this->addToPluginMap($this->pluginData['plugin_name']);
         if ($this->error !== true) {
 
-            $this->info('Create new plugin [' . $this->pluginData['class_name'] . ']');
+            $this->info('Create new plugin ['.$this->pluginData['class_name'].']');
             $this->info(' ');
 
-            if (!File::isDirectory('Plugin')) {
+            if ( ! File::isDirectory('Plugin')) {
                 File::makeDirectory('Plugin', 0755, true);
             }
 
             // Check if plugin class already exists
-            if (class_exists($this->pluginData['namespace'] . $this->pluginData['class_name'])) {
-                $this->error('Plugin ' . $this->pluginData['class_name'] . ' class already exists.');
+            if (class_exists($this->pluginData['namespace'].$this->pluginData['class_name'])) {
+                $this->error('Plugin '.$this->pluginData['class_name'].' class already exists.');
 
                 return;
             }
@@ -44,9 +44,8 @@ final class CreatePluginCommand extends Command
             $this->createPluginDirectories();
             $this->createPluginFiles();
 
-
             $this->info(' ');
-            $this->info($this->pluginData['class_name'] . ' plugin created successfully.');
+            $this->info($this->pluginData['class_name'].' plugin created successfully.');
         } else {
             $this->info('Exit with en error');
         }
@@ -55,8 +54,8 @@ final class CreatePluginCommand extends Command
     protected function createPluginDirectories(): void
     {
         foreach ($this->pluginData['dirs'] as $directory) {
-            if (!File::isDirectory(ucfirst($this->pluginData['path'] . $directory))) {
-                File::makeDirectory($this->pluginData['path'] . ucfirst($directory), 0755, true);
+            if ( ! File::isDirectory(ucfirst($this->pluginData['path'].$directory))) {
+                File::makeDirectory($this->pluginData['path'].ucfirst($directory), 0755, true);
             }
         }
     }
@@ -106,14 +105,14 @@ final class CreatePluginCommand extends Command
 
     protected function createPluginFile($name, $className, $namespace, $file, $namespaceNoEnding): void
     {
-        $pluginPath = app_path('Plugins/' . ucfirst($className) . '/');
-        $path = $pluginPath . Str::replaceArray('/', ['\\', ''], $file);
+        $pluginPath = app_path('Plugins/'.ucfirst($className).'/');
+        $path = $pluginPath.Str::replaceArray('/', ['\\', ''], $file);
 
-        if (!File::isDirectory($pluginPath)) {
+        if ( ! File::isDirectory($pluginPath)) {
             File::makeDirectory($pluginPath, 0755, true);
         }
 
-        $stub = File::get(resource_path('stubs/plugin/' . $file . '.stub'));
+        $stub = File::get(resource_path('stubs/plugin/'.$file.'.stub'));
 
         $content = str_replace(
             ['{{className}}', '{{namespace}}', '{{pluginName}}', '{{namespaceNoEnding}}'],
@@ -122,17 +121,17 @@ final class CreatePluginCommand extends Command
         );
 
         if ($file === 'config') {
-            $filePath = $path . '/' . Str::kebab($className) . '.php';
-            if (!file_exists($filePath)) {
-                if (!File::isDirectory($path)) {
+            $filePath = $path.'/'.Str::kebab($className).'.php';
+            if ( ! file_exists($filePath)) {
+                if ( ! File::isDirectory($path)) {
                     File::makeDirectory($path, 0755, true);
                 }
                 file_put_contents($filePath, $content);
             }
         } elseif ($file === 'routes') {
-            $filePath = $path . '/web.php';
-            if (!file_exists($filePath)) {
-                if (!File::isDirectory($path)) {
+            $filePath = $path.'/web.php';
+            if ( ! file_exists($filePath)) {
+                if ( ! File::isDirectory($path)) {
                     File::makeDirectory($path, 0755, true);
                 }
                 file_put_contents($filePath, $content);
@@ -146,32 +145,32 @@ final class CreatePluginCommand extends Command
 
         $suffix = 'Plugin';
 
-        $this->pluginData['plugin_name'] = $this->argument('name') . 'Plugin';
+        $this->pluginData['plugin_name'] = $this->argument('name').'Plugin';
         $this->pluginData['class_name'] = $pluginClassName;
-        $this->pluginData['namespace'] = 'App\\Plugins\\' . $pluginClassName . 'Plugin';
-        $this->pluginData['path'] = app_path('Plugins/' . ucfirst($pluginClassName) . $suffix . '/');
+        $this->pluginData['namespace'] = 'App\\Plugins\\'.$pluginClassName.'Plugin';
+        $this->pluginData['path'] = app_path('Plugins/'.ucfirst($pluginClassName).$suffix.'/');
         $this->pluginData['files'] = [
-            'controller' => Str::studly($pluginName) . 'Controller.php',
-            'model'      => Str::studly($pluginName) . '.php',
+            'controller' => Str::studly($pluginName).'Controller.php',
+            'model'      => Str::studly($pluginName).'.php',
             'routes'     => [
                 'web' => 'web.php',
                 'api' => 'api.php',
             ],
             'views'      => [
-//                'index'  => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'index.blade.php',
-//                'show'   => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'show.blade.php',
-//                'create' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'create.blade.php',
-//                'update' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'update.blade.php',
+                //                'index'  => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'index.blade.php',
+                //                'show'   => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'show.blade.php',
+                //                'create' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'create.blade.php',
+                //                'update' => Str::kebab($pluginName).DIRECTORY_SEPARATOR.'update.blade.php',
                 'index'  => 'index.blade.php',
                 'show'   => 'show.blade.php',
                 'create' => 'create.blade.php',
                 'update' => 'update.blade.php',
             ],
             'blade'      => [
-                'index'  => Str::kebab($pluginName) . '::' . 'index',
-                'show'   => Str::kebab($pluginName) . '::' . 'show',
-                'create' => Str::kebab($pluginName) . '::' . 'create',
-                'update' => Str::kebab($pluginName) . '::' . 'update',
+                'index'  => Str::kebab($pluginName).'::'.'index',
+                'show'   => Str::kebab($pluginName).'::'.'show',
+                'create' => Str::kebab($pluginName).'::'.'create',
+                'update' => Str::kebab($pluginName).'::'.'update',
             ],
 
         ];
@@ -187,17 +186,17 @@ final class CreatePluginCommand extends Command
 
     private function checkFilePath($filePath, mixed $file): void
     {
-        if (file_exists($filePath . $file)) {
-            $this->info('File [' . $filePath . $file . '] already exists!');
+        if (file_exists($filePath.$file)) {
+            $this->info('File ['.$filePath.$file.'] already exists!');
         }
     }
 
     private function makeController(string $filePath, mixed $file): void
     {
-        $full_file_path = $filePath . 'Controllers/' . $file;
+        $full_file_path = $filePath.'Controllers/'.$file;
 
-        if (!file_exists($full_file_path)) {
-            if (!File::isDirectory($filePath)) {
+        if ( ! file_exists($full_file_path)) {
+            if ( ! File::isDirectory($filePath)) {
                 File::makeDirectory($filePath, 0755, true);
             }
 
@@ -205,7 +204,7 @@ final class CreatePluginCommand extends Command
 
             $content = str_replace(
                 ['{{className}}', '{{namespace}}', '{{pluginName}}', '{{viewPath}}', '{{viewNamespace}}'],
-                [$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index'], strtolower($this->pluginData['plugin_name']) . '::index'],
+                [$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index'], mb_strtolower($this->pluginData['plugin_name']).'::index'],
                 $stub
             );
 
@@ -216,7 +215,6 @@ final class CreatePluginCommand extends Command
 //  3 => "example::index"
 //]
 
-
 //            dd([$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index']]);
 
             file_put_contents($full_file_path, $content);
@@ -225,10 +223,10 @@ final class CreatePluginCommand extends Command
 
     private function makeModel(string $filePath, mixed $file): void
     {
-        $full_file_path = $filePath . 'Models/' . $file;
+        $full_file_path = $filePath.'Models/'.$file;
 
-        if (!file_exists($full_file_path)) {
-            if (!File::isDirectory($filePath)) {
+        if ( ! file_exists($full_file_path)) {
+            if ( ! File::isDirectory($filePath)) {
                 File::makeDirectory($filePath, 0755, true);
             }
 
@@ -250,15 +248,15 @@ final class CreatePluginCommand extends Command
 //"example\index.blade.php" // app\Console\Commands\CreatePluginCommand.php:227
 
 //        dd($filePath, $file);
-        $full_file_path = $filePath . 'Views/' . $file;
+        $full_file_path = $filePath.'Views/'.$file;
 //        dd($full_file_path);
 //        $view_file_path = $filePath.'Views/'.mb_strtolower(Str::kebab($this->pluginData['class_name']));
-        $view_file_path = $filePath . 'Views/';
+        $view_file_path = $filePath.'Views/';
 
 //        dd($full_file_path, $view_file_path);
 
-        if (!file_exists($full_file_path)) {
-            if (!File::isDirectory($view_file_path)) {
+        if ( ! file_exists($full_file_path)) {
+            if ( ! File::isDirectory($view_file_path)) {
                 File::makeDirectory($view_file_path, 0755, true);
             }
 
@@ -276,20 +274,20 @@ final class CreatePluginCommand extends Command
 
     private function makeRoute(string $filePath, mixed $file): void
     {
-        $full_file_path = $filePath . 'Routes/' . $file;
-        $view_file_path = $filePath . 'Routes/';
+        $full_file_path = $filePath.'Routes/'.$file;
+        $view_file_path = $filePath.'Routes/';
         $stub = str_replace('.php', '.stub', $file);
 
-        if (!file_exists($full_file_path)) {
-            if (!File::isDirectory($view_file_path)) {
+        if ( ! file_exists($full_file_path)) {
+            if ( ! File::isDirectory($view_file_path)) {
                 File::makeDirectory($view_file_path, 0755, true);
             }
 
-            $stub = File::get(resource_path('stubs/plugin/' . $stub));
+            $stub = File::get(resource_path('stubs/plugin/'.$stub));
 
             $content = str_replace(
                 ['{{className}}', '{{namespace}}', '{{pluginName}}', '{{classNameLowercase}}'],
-                [$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], strtolower($this->pluginData['class_name'])],
+                [$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], mb_strtolower($this->pluginData['class_name'])],
                 $stub
             );
 
@@ -297,16 +295,14 @@ final class CreatePluginCommand extends Command
         }
     }
 
-    /**
-     * @return void
-     */
     private function addToPluginMap($pluginKey): void
     {
         $configFile = base_path('config/plugins.php');
 
-        if (!file_exists($configFile) || !is_writable($configFile)) {
+        if ( ! file_exists($configFile) || ! is_writable($configFile)) {
             $this->error = true;
             $this->error('Configuration file does not exist or is not writable');
+
             return;
         }
 
@@ -314,7 +310,8 @@ final class CreatePluginCommand extends Command
 
         if (isset($config[$pluginKey])) {
             $this->error = true;
-            $this->error('Plugin ' . $pluginKey . ' already exists in configuration');
+            $this->error('Plugin '.$pluginKey.' already exists in configuration');
+
             return;
         }
 
@@ -323,7 +320,7 @@ final class CreatePluginCommand extends Command
             // add other configuration options for this plugin here
         ];
 
-        file_put_contents($configFile, '<?php return ' . var_export($config, true) . ';');
+        file_put_contents($configFile, '<?php declare(strict_types=1); return '.var_export($config, true).';');
 
         // Reload the configuration to make sure the changes are reflected
         app('config')->set('plugins', $config);
