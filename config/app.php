@@ -205,6 +205,7 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
+        App\Providers\PluginServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -215,6 +216,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+    ],
+
+    'files' => [
+        // ...
+        app_path('Plugins/example-plugin/config.php'),
+        // ...
     ],
 
     /*
