@@ -9,9 +9,9 @@ use Spatie\Permission\Models\Role as SpatieRole;
 
 final class Role extends SpatieRole
 {
-//    use HasFactory;
+    //    use HasFactory;
 
     protected $guarded = [];
 
-//    protected $fillable = [];
+    //    protected $fillable = [];
 }

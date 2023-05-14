@@ -29,7 +29,7 @@ final class RoleController extends Controller
     {
         $roles = Role::query()->withCount('users')->get();
 
-//        dd($roles);
+        //        dd($roles);
 
         return view('admin.roles.index', compact('roles'));
     }

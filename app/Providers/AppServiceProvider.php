@@ -31,12 +31,12 @@ final class AppServiceProvider extends ServiceProvider
         /**
          * Overide paginator.
          */
-//        Paginator::defaultView('vendor.pagination.bootstrap-5');
+        //        Paginator::defaultView('vendor.pagination.bootstrap-5');
 
         /**
          * Config for database.
          */
         Schema::defaultStringLength(191);
-//        Builder::defaultStringLength(191);
+        //        Builder::defaultStringLength(191);
     }
 }
