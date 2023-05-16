@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/', fn () => view('welcome'))->name('welcome');
 
+Route::get('/locale/{locale}', \App\Http\Controllers\LocaleController::class)->name('set.locale');
+
 Route::get('login/github', [\App\Http\Controllers\Auth\SocialiteLoginController::class, 'redirectToGithubProvider'])->name('sociolite.github.login');
 Route::get('login/github/callback', [\App\Http\Controllers\Auth\SocialiteLoginController::class, 'handleGithubProviderCallback'])->name('sociolite.github.callback');
 

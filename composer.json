@@ -13,6 +13,7 @@
         "laravel/socialite": "^5.6.1",
         "laravel/tinker": "^2.8.1",
         "laravel/ui": "^4.2.1",
+        "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-permission": "^5.10.1"
     },
     "require-dev": {
@@ -31,7 +32,10 @@
             "App\\Plugins\\": "app/Plugins/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
