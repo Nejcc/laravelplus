@@ -31,7 +31,7 @@ final class Select extends Component
      */
     public function render(): View|Closure|string
     {
-        if ( ! $this->value) {
+        if (!$this->value) {
             $this->options = ['' => 'Select here'] + $this->options;
         }
 

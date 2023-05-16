@@ -30,7 +30,7 @@ final class CreatePluginCommand extends Command
             $this->info('Create new plugin ['.$this->pluginData['class_name'].']');
             $this->info(' ');
 
-            if ( ! File::isDirectory('Plugin')) {
+            if (!File::isDirectory('Plugin')) {
                 File::makeDirectory('Plugin', 0755, true);
             }
 
@@ -54,7 +54,7 @@ final class CreatePluginCommand extends Command
     protected function createPluginDirectories(): void
     {
         foreach ($this->pluginData['dirs'] as $directory) {
-            if ( ! File::isDirectory(ucfirst($this->pluginData['path'].$directory))) {
+            if (!File::isDirectory(ucfirst($this->pluginData['path'].$directory))) {
                 File::makeDirectory($this->pluginData['path'].ucfirst($directory), 0755, true);
             }
         }
@@ -108,7 +108,7 @@ final class CreatePluginCommand extends Command
         $pluginPath = app_path('Plugins/'.ucfirst($className).'/');
         $path = $pluginPath.Str::replaceArray('/', ['\\', ''], $file);
 
-        if ( ! File::isDirectory($pluginPath)) {
+        if (!File::isDirectory($pluginPath)) {
             File::makeDirectory($pluginPath, 0755, true);
         }
 
@@ -122,16 +122,16 @@ final class CreatePluginCommand extends Command
 
         if ($file === 'config') {
             $filePath = $path.'/'.Str::kebab($className).'.php';
-            if ( ! file_exists($filePath)) {
-                if ( ! File::isDirectory($path)) {
+            if (!file_exists($filePath)) {
+                if (!File::isDirectory($path)) {
                     File::makeDirectory($path, 0755, true);
                 }
                 file_put_contents($filePath, $content);
             }
         } elseif ($file === 'routes') {
             $filePath = $path.'/web.php';
-            if ( ! file_exists($filePath)) {
-                if ( ! File::isDirectory($path)) {
+            if (!file_exists($filePath)) {
+                if (!File::isDirectory($path)) {
                     File::makeDirectory($path, 0755, true);
                 }
                 file_put_contents($filePath, $content);
@@ -195,8 +195,8 @@ final class CreatePluginCommand extends Command
     {
         $full_file_path = $filePath.'Controllers/'.$file;
 
-        if ( ! file_exists($full_file_path)) {
-            if ( ! File::isDirectory($filePath)) {
+        if (!file_exists($full_file_path)) {
+            if (!File::isDirectory($filePath)) {
                 File::makeDirectory($filePath, 0755, true);
             }
 
@@ -225,8 +225,8 @@ final class CreatePluginCommand extends Command
     {
         $full_file_path = $filePath.'Models/'.$file;
 
-        if ( ! file_exists($full_file_path)) {
-            if ( ! File::isDirectory($filePath)) {
+        if (!file_exists($full_file_path)) {
+            if (!File::isDirectory($filePath)) {
                 File::makeDirectory($filePath, 0755, true);
             }
 
@@ -255,8 +255,8 @@ final class CreatePluginCommand extends Command
 
         //        dd($full_file_path, $view_file_path);
 
-        if ( ! file_exists($full_file_path)) {
-            if ( ! File::isDirectory($view_file_path)) {
+        if (!file_exists($full_file_path)) {
+            if (!File::isDirectory($view_file_path)) {
                 File::makeDirectory($view_file_path, 0755, true);
             }
 
@@ -278,8 +278,8 @@ final class CreatePluginCommand extends Command
         $view_file_path = $filePath.'Routes/';
         $stub = str_replace('.php', '.stub', $file);
 
-        if ( ! file_exists($full_file_path)) {
-            if ( ! File::isDirectory($view_file_path)) {
+        if (!file_exists($full_file_path)) {
+            if (!File::isDirectory($view_file_path)) {
                 File::makeDirectory($view_file_path, 0755, true);
             }
 
@@ -299,7 +299,7 @@ final class CreatePluginCommand extends Command
     {
         $configFile = base_path('config/plugins.php');
 
-        if ( ! file_exists($configFile) || ! is_writable($configFile)) {
+        if (!file_exists($configFile) || !is_writable($configFile)) {
             $this->error = true;
             $this->error('Configuration file does not exist or is not writable');
 

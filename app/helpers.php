@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-if ( ! function_exists('getAllLocales')) {
+if (!function_exists('getAllLocales')) {
 
     function getAllLocales(): array
     {
@@ -10,7 +10,7 @@ if ( ! function_exists('getAllLocales')) {
     }
 }
 
-if ( ! function_exists('getLocaleByName')) {
+if (!function_exists('getLocaleByName')) {
 
     function getLocaleByName(string $name): array
     {
