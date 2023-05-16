@@ -10,12 +10,12 @@ use Illuminate\Support\Str;
 
 final class PluginServiceProvider extends ServiceProvider
 {
-//    private array $plugins;
-//
-//    public function __construct()
-//    {
-//        $this->plugins = config('plugins');
-//    }
+    //    private array $plugins;
+    //
+    //    public function __construct()
+    //    {
+    //        $this->plugins = config('plugins');
+    //    }
 
     public function register(): void
     {
@@ -41,7 +41,7 @@ final class PluginServiceProvider extends ServiceProvider
     {
         $plugins = config('plugins');
 
-//        dd($plugins);
+        //        dd($plugins);
 
         foreach ($plugins as $key => $plugin) {
 
@@ -62,33 +62,33 @@ final class PluginServiceProvider extends ServiceProvider
             }
 
             // Load views
-//            if (is_dir($path . 'Views')) {
-//                $this->loadViewsFrom($path . 'Views', $namespace . 'views');
-//                View::addNamespace($className, $path . 'Views');
-//            }
+            //            if (is_dir($path . 'Views')) {
+            //                $this->loadViewsFrom($path . 'Views', $namespace . 'views');
+            //                View::addNamespace($className, $path . 'Views');
+            //            }
 
-//            // Load migrations
-//            if (is_dir($path.'database/migrations')) {
-//                $this->loadMigrationsFrom($path.'database/migrations');
-//            }
-//
-//            // Load seeder
-//            if (is_dir($path.'database/seeders')) {
-//                $this->loadMigrationsFrom($path.'database/seeders');
-//            }
-//
-//            // Load translations
-//            if (is_dir($path.'lang')) {
-//                $this->loadTranslationsFrom($path.'lang', $namespace.'lang');
-//            }
+            //            // Load migrations
+            //            if (is_dir($path.'database/migrations')) {
+            //                $this->loadMigrationsFrom($path.'database/migrations');
+            //            }
+            //
+            //            // Load seeder
+            //            if (is_dir($path.'database/seeders')) {
+            //                $this->loadMigrationsFrom($path.'database/seeders');
+            //            }
+            //
+            //            // Load translations
+            //            if (is_dir($path.'lang')) {
+            //                $this->loadTranslationsFrom($path.'lang', $namespace.'lang');
+            //            }
 
-//            dd($path);
-//            dd($namespace.'Controllers');
+            //            dd($path);
+            //            dd($namespace.'Controllers');
             // Load controllers
-//            if (is_dir($path . 'Controllers')) {
-////                $this->app->make($namespace . 'Controllers')->hintPath($path . 'Controllers');
-//                $this->app->make($namespace . 'Controllers');
-//            }
+            //            if (is_dir($path . 'Controllers')) {
+            ////                $this->app->make($namespace . 'Controllers')->hintPath($path . 'Controllers');
+            //                $this->app->make($namespace . 'Controllers');
+            //            }
         }
     }
 }

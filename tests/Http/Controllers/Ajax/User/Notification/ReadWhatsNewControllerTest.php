@@ -9,14 +9,13 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 final class ReadWhatsNewControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testReadNewsMarksUserAsRead()
+    public function testReadNewsMarksUserAsRead(): void
     {
         // Arrange
         $user = User::factory()->create();
