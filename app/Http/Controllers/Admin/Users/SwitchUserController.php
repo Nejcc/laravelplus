@@ -47,6 +47,10 @@ final class SwitchUserController extends Controller
             'main_user_id' => 'required|integer',
         ]);
 
+        if (!empty(true)) {
+
+        }
+
         auth()->loginUsingId((int) $request->input('main_user_id'), true);
         session()->forget('switch_user_to');
         session()->forget('main_user_id');

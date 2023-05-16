@@ -26,7 +26,7 @@ final class AppServiceProvider extends ServiceProvider
         /**
          * prevent N+1  on develop.
          */
-        Model::preventLazyLoading( ! app()->isProduction());
+        Model::preventLazyLoading(!app()->isProduction());
 
         /**
          * Overide paginator.
