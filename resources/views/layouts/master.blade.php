@@ -48,30 +48,7 @@
                 <div class="nav-item d-none d-md-flex me-3">
                     <div class="btn-list overide-dark">
                         {{--                        <span class="mt-2">:</span>--}}
-                        @if(!session()->has('main_user_id'))
-                            @role('super-admin|admin')
-                            <form action="{{ route('admin.switch-user.login-as') }}" method="post" class="d-flex">
-                                @csrf
-                                <select name="switch_user_to" class="form-select ">
-                                    <option selected disabled>Switch User</option>
-                                    @foreach(\App\Models\User::all() as $user)
-                                        @if($user->id != auth()->id())
-                                            <option
-                                                value="{{ $user->id }}">{{ ucfirst($user->username ?: $user->email) }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                <input type="hidden" value="{{ auth()->id() }}" name="main_user_id">
-                                <button class="btn btn-link border-radius-none">Switch</button>
-                            </form>
-                            @endrole
-                        @else
-                            <form action="{{ route('switch-user.back') }}" method="post" class="d-flex">
-                                @csrf
-                                <input type="hidden" value="{{ session()->has('main_user_id') }}" name="main_user_id">
-                                <button class="btn btn-btn-dark">Remote logout</button>
-                            </form>
-                        @endif
+                            <x-utilities.switch-user></x-utilities.switch-user>
 
 {{--                        <a href="https://github.com/nejcc/laravelplus" class="btn btn-dark" target="_blank"--}}
 {{--                           rel="noreferrer">--}}
