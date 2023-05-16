@@ -53,7 +53,7 @@
                             <form action="{{ route('admin.switch-user.login-as') }}" method="post" class="d-flex">
                                 @csrf
                                 <select name="switch_user_to" class="form-select ">
-                                    <option selected disabled>Switch User</option>
+                                    <option selected disabled>{{ __('Switch User') }}</option>
                                     @foreach(\App\Models\User::all() as $user)
                                         @if($user->id != auth()->id())
                                             <option
