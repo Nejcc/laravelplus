@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-
-class LocaleController extends Controller
+final class LocaleController extends Controller
 {
     public function __invoke($locale)
     {

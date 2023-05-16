@@ -62,7 +62,7 @@ final class CreatePluginCommand extends Command
 
     protected function createPluginFiles(): void
     {
-//        dd($this->pluginData['files'], $this->pluginData['path']);
+        //        dd($this->pluginData['files'], $this->pluginData['path']);
         foreach ($this->pluginData['files'] as $key => $file) {
             switch ($key) {
                 case 'controller':
@@ -72,7 +72,7 @@ final class CreatePluginCommand extends Command
                     $this->info(' - Controller was created successfully');
                     break;
                 case 'model':
-//                    dd($filePath, $file);
+                    //                    dd($filePath, $file);
                     $filePath = $this->pluginData['path'];
                     $this->checkFilePath($filePath, $file);
                     $this->makeModel($filePath, $file);
@@ -87,7 +87,7 @@ final class CreatePluginCommand extends Command
                     $this->info(' - Routes was created successfully');
                     break;
                 case 'views':
-//                    dd($filePath, $file);
+                    //                    dd($filePath, $file);
                     foreach ($file as $view) {
                         $filePath = $this->pluginData['path'];
                         $this->checkFilePath($filePath, $view);
@@ -97,7 +97,7 @@ final class CreatePluginCommand extends Command
                     break;
 
                 default:
-//                    file_put_contents($this->pluginData['path'] . $file, $content);
+                    //                    file_put_contents($this->pluginData['path'] . $file, $content);
                     break;
             }
         }
@@ -208,14 +208,14 @@ final class CreatePluginCommand extends Command
                 $stub
             );
 
-//array:4 [ // app\Console\Commands\CreatePluginCommand.php:203
-//  0 => "Example"
-//  1 => "App\Plugins\ExamplePlugin"
-//  2 => "ExamplePlugin"
-//  3 => "example::index"
-//]
+            //array:4 [ // app\Console\Commands\CreatePluginCommand.php:203
+            //  0 => "Example"
+            //  1 => "App\Plugins\ExamplePlugin"
+            //  2 => "ExamplePlugin"
+            //  3 => "example::index"
+            //]
 
-//            dd([$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index']]);
+            //            dd([$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index']]);
 
             file_put_contents($full_file_path, $content);
         }
@@ -244,16 +244,16 @@ final class CreatePluginCommand extends Command
 
     private function makeView(string $filePath, mixed $file): void
     {
-//        "C:\wamp\www\laravelplus.com\app\Plugins/ExamplePlugin/" // app\Console\Commands\CreatePluginCommand.php:227
-//"example\index.blade.php" // app\Console\Commands\CreatePluginCommand.php:227
+        //        "C:\wamp\www\laravelplus.com\app\Plugins/ExamplePlugin/" // app\Console\Commands\CreatePluginCommand.php:227
+        //"example\index.blade.php" // app\Console\Commands\CreatePluginCommand.php:227
 
-//        dd($filePath, $file);
+        //        dd($filePath, $file);
         $full_file_path = $filePath.'Views/'.$file;
-//        dd($full_file_path);
-//        $view_file_path = $filePath.'Views/'.mb_strtolower(Str::kebab($this->pluginData['class_name']));
+        //        dd($full_file_path);
+        //        $view_file_path = $filePath.'Views/'.mb_strtolower(Str::kebab($this->pluginData['class_name']));
         $view_file_path = $filePath.'Views/';
 
-//        dd($full_file_path, $view_file_path);
+        //        dd($full_file_path, $view_file_path);
 
         if ( ! file_exists($full_file_path)) {
             if ( ! File::isDirectory($view_file_path)) {

@@ -1,10 +1,12 @@
-<?php declare(strict_types=1); return array (
-  'ExamplePlugin' => 
-  array (
-    'enabled' => true,
-  ),
-  'NejcPlugin' => 
-  array (
-    'enabled' => true,
-  ),
-);
+<?php
+
+declare(strict_types=1);
+
+return [
+    'ExamplePlugin' => [
+        'enabled' => true,
+    ],
+    'NejcPlugin' => [
+        'enabled' => true,
+    ],
+];
