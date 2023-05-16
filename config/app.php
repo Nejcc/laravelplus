@@ -33,7 +33,7 @@ return [
     */
 
     'theme' => [
-        'path' => env('APP_THEME_PATH', 'themes/v1/'),
+        'path' => env('APP_THEME_PATH', 'themes/v2/'),
     ],
 
     /*

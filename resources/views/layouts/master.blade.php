@@ -29,10 +29,10 @@
     @stack('css')
 </head>
 <body>
-<script src="{{ asset(config('app.theme.path').'dist/js/demo-theme.min.js?1674944402') }}"></script>
+<script src="{{ asset(config('app.theme.path').'dist/js/demo-theme.min.js') }}"></script>
 <div class="page" id="app">
     <!-- Navbar -->
-    <header class="navbar navbar-expand-md navbar-dark d-print-none">
+    <header class="navbar navbar-expand-md d-print-none" data-bs-theme="dark">
         <div class="container-xl">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
                     aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
