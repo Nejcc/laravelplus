@@ -22,7 +22,6 @@ final class PluginServiceProvider extends ServiceProvider
         $plugins = config('plugins');
 
         foreach ($plugins as $key => $plugin) {
-
             if ($plugin['enabled'] === true) {
                 $className = Str::studly($key);
 
@@ -44,7 +43,6 @@ final class PluginServiceProvider extends ServiceProvider
         //        dd($plugins);
 
         foreach ($plugins as $key => $plugin) {
-
             if ($plugin['enabled'] === true) {
                 $className = Str::studly($key);
 

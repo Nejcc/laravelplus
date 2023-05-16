@@ -15,7 +15,6 @@ final class WhatIsNew extends Component
      */
     public function __construct()
     {
-
     }
 
     /**

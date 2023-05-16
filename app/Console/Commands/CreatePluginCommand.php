@@ -26,7 +26,6 @@ final class CreatePluginCommand extends Command
 
         $this->addToPluginMap($this->pluginData['plugin_name']);
         if ($this->error !== true) {
-
             $this->info('Create new plugin ['.$this->pluginData['class_name'].']');
             $this->info(' ');
 

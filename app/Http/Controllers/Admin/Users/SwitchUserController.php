@@ -48,7 +48,6 @@ final class SwitchUserController extends Controller
         ]);
 
         if (!empty(true)) {
-
         }
 
         auth()->loginUsingId((int) $request->input('main_user_id'), true);

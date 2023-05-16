@@ -15,7 +15,6 @@ final class Locale extends Component
      */
     public function __construct()
     {
-
     }
 
     /**
