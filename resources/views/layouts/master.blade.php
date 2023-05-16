@@ -41,7 +41,7 @@
             <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                 <a href="{{ route('home') }}">
                     {{--                    <img src="" width="110" height="32" alt="logo" class="navbar-brand-image">--}}
-                    <h2>{{ config('app.name') }}</h2>
+                    <h2 class="mt-2">{{ config('app.name') }}</h2>
                 </a>
             </h1>
             <div class="navbar-nav flex-row order-md-last">
@@ -73,17 +73,18 @@
                             </form>
                         @endif
 
-                        <a href="https://github.com/nejcc/laravelplus" class="btn btn-dark" target="_blank"
-                           rel="noreferrer">
-                            <i class="ti ti-brand-github"></i> {{ __('Source code') }}
-                        </a>
-                        <a href="https://github.com/sponsors/nejcc" class="btn btn-dark" target="_blank"
-                           rel="noreferrer">
-                            <i class="ti ti-heart"></i> {{ __('Sponsor') }}
-                        </a>
+{{--                        <a href="https://github.com/nejcc/laravelplus" class="btn btn-dark" target="_blank"--}}
+{{--                           rel="noreferrer">--}}
+{{--                            <i class="ti ti-brand-github"></i> {{ __('Source code') }}--}}
+{{--                        </a>--}}
+{{--                        <a href="https://github.com/sponsors/nejcc" class="btn btn-dark" target="_blank"--}}
+{{--                           rel="noreferrer">--}}
+{{--                            <i class="ti ti-heart"></i> {{ __('Sponsor') }}--}}
+{{--                        </a>--}}
                     </div>
                 </div>
                 <div class="d-none d-md-flex">
+                    <x-locale></x-locale>
                     <a href="?theme=dark" class="nav-link px-0 mt-1 hide-theme-dark" title="Enable dark mode"
                        data-bs-toggle="tooltip"
                        data-bs-placement="bottom">
@@ -108,7 +109,6 @@
                                 d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"/>
                         </svg>
                     </a>
-
                     <x-header.notifications></x-header.notifications>
 
                 </div>
