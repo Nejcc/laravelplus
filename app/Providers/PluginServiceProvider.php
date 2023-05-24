@@ -29,7 +29,7 @@ final class PluginServiceProvider extends ServiceProvider
                 $namespace = 'App\\Plugins\\'.ucfirst($className).'\\';
                 $path = app_path('Plugins/'.ucfirst($className).'/');
 
-                var_dump($path,$className);
+//                var_dump($path,$className);
 
                 // Register any dependencies or services required by your plugin here
                 if (is_dir($path.'Views')) {

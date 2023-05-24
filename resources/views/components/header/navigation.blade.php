@@ -1,7 +1,7 @@
 <div>
     <div class="collapse navbar-collapse" id="navbar-menu">
         <div class="navbar navbar-light">
-            <div class="container-xl">
+            <div class="{{ config('plugins.forum.container', 'container-xl') }}">
                 <ul class="navbar-nav">
                     <li class="nav-item {{ (request()->is('home') ? 'active' : '') }}">
                         <a class="nav-link" href="{{ route('home') }}">
