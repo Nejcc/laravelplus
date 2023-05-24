@@ -11,12 +11,12 @@ final class ForumController extends Controller
         $topics = [
 
             [
-                'title'       => 'Beesource Beekeeping Forum - Start Here!',
+                'title'       => 'BeeApp Beekeeping Forum - Start Here!',
                 'description' => 'Please say hello and introduce yourself in our Welcome Forum or check for the latest announcements',
                 'topics'      => [
                     [
                         'title'       => 'Welcome Forum',
-                        'description' => 'If this is your first time on the Beesource Beekeeping Forums, please introduce yourself here.',
+                        'description' => 'If this is your first time on the BeeApp Beekeeping Forums, please introduce yourself here.',
                     ],
                     [
                         'title'       => 'Rules & Announcements',
