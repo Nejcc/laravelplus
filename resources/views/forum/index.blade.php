@@ -12,7 +12,7 @@
                         {{__('Overview')}}
                     </div>
                     <h2 class="page-title">
-                        {{__('Dashboard')}}
+                        {{__('Form Demo')}}
                     </h2>
                 </div>
                 <!-- Page title actions -->
