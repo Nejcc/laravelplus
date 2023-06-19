@@ -1,5 +1,5 @@
 <div>
-    @if(!session()->has('rdp_on'))
+    @if(!session()->has('rdp_on') && auth()->check() == true)
         <div class="modal modal-blur fade show" id="modal-success" tabindex="-1"
              style="{{ (auth()->user()->is_read_news != true) ? 'display: block;' : '' }}" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-md modal-dialog-centered" role="document">
