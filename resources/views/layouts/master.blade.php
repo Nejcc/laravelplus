@@ -33,7 +33,7 @@
 <div class="page" id="app">
     <!-- Navbar -->
     <header class="navbar navbar-expand-md d-print-none" data-bs-theme="dark">
-        <div class="container-xl">
+        <div class="{{ config('theme.default_container', 'container') }}">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
                     aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

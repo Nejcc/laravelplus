@@ -17,3 +17,12 @@ if (!function_exists('getLocaleByName')) {
         return \App\Helpers\Utilities\GetLocales::get($name);
     }
 }
+
+
+if (!function_exists('plugin_enabled')) {
+
+    function plugin_enabled(string $name): bool
+    {
+        return config('plugins.'.$name.'.enabled');
+    }
+}

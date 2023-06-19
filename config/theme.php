@@ -3,18 +3,18 @@
 declare(strict_types=1);
 
 return [
-
-    'has'     => [
+    'default_container' => 'container',
+    'has'               => [
         'header'        => true,
         'footer'        => true,
         'register_name' => false,
         'gdpr'          => false,
     ],
-    'login'   => [
+    'login'             => [
         'ilustration' => false,
         'cover'       => true,
     ],
-    'regiter' => [
+    'regiter'           => [
         'ilustration' => false,
     ],
 
