@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use App\Models\Forum\Thread;
 use App\Http\Requests\StoreThreadRequest;
 use App\Http\Requests\UpdateThreadRequest;
+use App\Models\Forum\Thread;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
-class ThreadController extends Controller
+final class ThreadController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): Response
     {
-        //
+
     }
 
     /**
@@ -23,7 +25,7 @@ class ThreadController extends Controller
      */
     public function create(): Response
     {
-        //
+
     }
 
     /**
@@ -31,7 +33,7 @@ class ThreadController extends Controller
      */
     public function store(StoreThreadRequest $request): RedirectResponse
     {
-        //
+
     }
 
     /**
@@ -39,7 +41,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread): Response
     {
-        //
+
     }
 
     /**
@@ -47,7 +49,7 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread): Response
     {
-        //
+
     }
 
     /**
@@ -55,7 +57,7 @@ class ThreadController extends Controller
      */
     public function update(UpdateThreadRequest $request, Thread $thread): RedirectResponse
     {
-        //
+
     }
 
     /**
@@ -63,6 +65,6 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread): RedirectResponse
     {
-        //
+
     }
 }

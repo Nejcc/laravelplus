@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Forum\Topic;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class TopicPolicy
+final class TopicPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -21,7 +22,7 @@ class TopicPolicy
      */
     public function view(User $user, Topic $topic): bool
     {
-        //
+
     }
 
     /**
@@ -29,7 +30,7 @@ class TopicPolicy
      */
     public function create(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -37,7 +38,7 @@ class TopicPolicy
      */
     public function update(User $user, Topic $topic): bool
     {
-        //
+
     }
 
     /**
@@ -45,7 +46,7 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic): bool
     {
-        //
+
     }
 
     /**
@@ -53,7 +54,7 @@ class TopicPolicy
      */
     public function restore(User $user, Topic $topic): bool
     {
-        //
+
     }
 
     /**
@@ -61,6 +62,6 @@ class TopicPolicy
      */
     public function forceDelete(User $user, Topic $topic): bool
     {
-        //
+
     }
 }

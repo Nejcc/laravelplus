@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
@@ -26,7 +28,7 @@ final class ForumController extends Controller
                         'title'       => 'Welcome Forum',
                         'description' => 'This is a "read only" forum.',
                     ],
-                ]
+                ],
             ],
             [
                 'title'       => 'Frequently Asked Questions',
@@ -37,7 +39,7 @@ final class ForumController extends Controller
                         'description' => 'A list of Frequently Asked Questions and links to the corresponding threads.',
                     ],
 
-                ]
+                ],
             ],
             [
                 'title'       => 'General Beekeeping Forums',
@@ -47,14 +49,15 @@ final class ForumController extends Controller
                         'title'       => 'How to Start Beekeeping',
                         'description' => 'A curated joint effort to develop an FAQ on all aspects of beginning beekeeping. Note that this sub-forum and its \'child sub-forums are \'closed to new posts. Please use other sub-forums to start new threads.',
                     ],
-[
-    'title'       => 'History of Beekeeping',
-    'description' => 'A curated joint effort to develop an FAQ on all aspects of beginning beekeeping. Note that this sub-forum and its \'child sub-forums are \'closed\' to new posts. Please use other sub-forums to start new threads.',
+                    [
+                        'title'       => 'History of Beekeeping',
+                        'description' => 'A curated joint effort to develop an FAQ on all aspects of beginning beekeeping. Note that this sub-forum and its \'child sub-forums are \'closed\' to new posts. Please use other sub-forums to start new threads.',
                     ],
-                ]
+                ],
             ],
 
         ];
+
         return view('forum.index', compact('topics'));
     }
 }

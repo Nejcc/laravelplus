@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateThreadRequest extends FormRequest
+final class UpdateThreadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +24,7 @@ class UpdateThreadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+
         ];
     }
 }

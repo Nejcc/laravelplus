@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
@@ -9,14 +11,14 @@ use App\Models\Forum\Topic;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
-class TopicController extends Controller
+final class TopicController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): Response
     {
-        //
+
     }
 
     /**
@@ -24,7 +26,7 @@ class TopicController extends Controller
      */
     public function create(): Response
     {
-        //
+
     }
 
     /**
@@ -32,7 +34,7 @@ class TopicController extends Controller
      */
     public function store(StoreTopicRequest $request): RedirectResponse
     {
-        //
+
     }
 
     /**
@@ -40,7 +42,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic): Response
     {
-        //
+
     }
 
     /**
@@ -48,7 +50,7 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic): Response
     {
-        //
+
     }
 
     /**
@@ -56,7 +58,7 @@ class TopicController extends Controller
      */
     public function update(UpdateTopicRequest $request, Topic $topic): RedirectResponse
     {
-        //
+
     }
 
     /**
@@ -64,6 +66,6 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic): RedirectResponse
     {
-        //
+
     }
 }

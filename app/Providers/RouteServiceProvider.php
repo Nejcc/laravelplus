@@ -6,10 +6,10 @@ namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Str;
 
 final class RouteServiceProvider extends ServiceProvider
 {
@@ -45,7 +45,7 @@ final class RouteServiceProvider extends ServiceProvider
 
             foreach (config('plugins') as $name => $plugin) {
                 if ($plugin['enabled'] === true) {
-                    $routeNameFile = strtolower(\Str::slug($name));
+                    $routeNameFile = mb_strtolower(Str::slug($name));
                     Route::middleware('web')
                         ->prefix($routeNameFile)
                         ->group(base_path('routes/' . $routeNameFile . '.php'));
@@ -62,6 +62,6 @@ final class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting(): void
     {
-        RateLimiter::for('api', fn(Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
+        RateLimiter::for('api', fn (Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
     }
 }

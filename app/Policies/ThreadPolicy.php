@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Forum\Thread;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class ThreadPolicy
+final class ThreadPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -21,7 +22,7 @@ class ThreadPolicy
      */
     public function view(User $user, Thread $thread): bool
     {
-        //
+
     }
 
     /**
@@ -29,7 +30,7 @@ class ThreadPolicy
      */
     public function create(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -37,7 +38,7 @@ class ThreadPolicy
      */
     public function update(User $user, Thread $thread): bool
     {
-        //
+
     }
 
     /**
@@ -45,7 +46,7 @@ class ThreadPolicy
      */
     public function delete(User $user, Thread $thread): bool
     {
-        //
+
     }
 
     /**
@@ -53,7 +54,7 @@ class ThreadPolicy
      */
     public function restore(User $user, Thread $thread): bool
     {
-        //
+
     }
 
     /**
@@ -61,6 +62,6 @@ class ThreadPolicy
      */
     public function forceDelete(User $user, Thread $thread): bool
     {
-        //
+
     }
 }
