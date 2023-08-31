@@ -21,6 +21,12 @@ return new class() extends Migration {
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->boolean('is_read_news')->default(false);
+
+            // User activity status
+            $table->tinyInteger('status')->default(0);
+            $table->dateTime('last_activity_at')->nullable();
+
+
             $table->rememberToken();
             $table->timestamps();
         });

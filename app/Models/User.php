@@ -30,6 +30,8 @@ final class User extends Authenticatable
         'password',
         'avatar',
         'is_read_news',
+        'last_activity_at',
+        'status',
     ];
 
     /**

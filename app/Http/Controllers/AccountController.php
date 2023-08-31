@@ -1,23 +1,21 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreThreadRequest;
-use App\Http\Requests\UpdateThreadRequest;
-use App\Models\Forum\Thread;
+use App\Models\Account;
+use App\Http\Requests\StoreAccountRequest;
+use App\Http\Requests\UpdateAccountRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
-final class ThreadController extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): Response
     {
-
+        //
     }
 
     /**
@@ -25,46 +23,46 @@ final class ThreadController extends Controller
      */
     public function create(): Response
     {
-
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreThreadRequest $request): RedirectResponse
+    public function store(StoreAccountRequest $request): RedirectResponse
     {
-
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Thread $thread): Response
+    public function show(Account $account): Response
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Thread $thread): Response
+    public function edit(Account $account): Response
     {
-
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateThreadRequest $request, Thread $thread): RedirectResponse
+    public function update(UpdateAccountRequest $request, Account $account): RedirectResponse
     {
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Thread $thread): RedirectResponse
+    public function destroy(Account $account): RedirectResponse
     {
-
+        //
     }
 }
