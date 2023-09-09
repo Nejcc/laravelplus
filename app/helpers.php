@@ -17,3 +17,11 @@ if (!function_exists('getLocaleByName')) {
         return \App\Helpers\Utilities\GetLocales::get($name);
     }
 }
+
+if (!function_exists('apiResponse')) {
+
+    function apiResponse(string $name): array
+    {
+        return \App\Helpers\Api\ApiResponse::json($name);
+    }
+}

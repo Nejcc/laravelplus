@@ -16,7 +16,8 @@ return [
     */
 
     'defaults' => [
-        'guard'     => 'web',
+        'guard'     => 'web', //web via web login
+//        'guard'     => 'api',   // if you will use only api change this to "api"
         'passwords' => 'users',
     ],
 
@@ -42,6 +43,10 @@ return [
     'guards' => [
         'web' => [
             'driver'   => 'session',
+            'provider' => 'users',
+        ],
+        'api' => [
+            'driver' => 'jwt',
             'provider' => 'users',
         ],
     ],
