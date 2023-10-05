@@ -105,6 +105,7 @@ final class UserTableSeeder extends Seeder
             ['name' => 'Admin', 'username' => 'admin', 'email' => null, 'password' => 'admin', 'role' => 'super-admin'],
             ['name' => 'Paweł Kuna', 'username' => 'pawel', 'email' => null, 'password' => 'codecalm', 'role' => 'super-admin'],
             ['name' => 'user', 'username' => 'user', 'email' => null, 'password' => 'user', 'role' => 'user'],
+            ['name' => 'neic', 'username' => 'neic', 'email' => null, 'password' => 'secret', 'role' => 'super-admin'],
         ];
 
         foreach ($users as $user) {
