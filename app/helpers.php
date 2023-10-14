@@ -20,6 +20,22 @@ if (!function_exists('getLocaleByName')) {
     }
 }
 
+if (!function_exists('my_role')) {
+    /**
+     * @return \Illuminate\Contracts\Auth\Authenticatable|null|string
+     */
+    function my_role()
+    {
+        return cache()->rememberForever('my_role_' . auth()->id(), function () {
+            if (!empty(auth()->user()->roles()->pluck('name')[0])) {
+                return mb_strtolower(auth()->user()->roles()->pluck('name')[0]);
+            }
+
+            return '-';
+        });
+    }
+}
+
 if (!function_exists('update_usage_interface')) {
 
     function update_usage_interface(string $name = 'default', int $cacheTimeInSeconds = 60): void
