@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Billing\Gateways\BankPaymentGateway;
+use App\Billing\Gateways\CreditCardPaymentGateway;
+use App\Billing\Gateways\CryptoPaymentGateway;
+use App\Billing\Gateways\PayPalPaymentGateway;
+use App\Billing\Gateways\StripePaymentGateway;
+use App\Billing\PaymentGatewayContract;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use App\Billing\BankPaymentGateway;
-use App\Billing\CreditCardPaymentGateway;
-use App\Billing\CryptoPaymentGateway;
-use App\Billing\PaymentGatewayContract;
-use App\Billing\PayPalPaymentGateway;
-use App\Billing\StripePaymentGateway;
 
 final class AppServiceProvider extends ServiceProvider
 {

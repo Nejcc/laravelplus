@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Billing;
+namespace App\Billing\Gateways;
 
-class CryptoPaymentGateway implements PaymentGatewayContract
+use App\Billing\PaymentGatewayContract;
+
+class PayPalPaymentGateway implements PaymentGatewayContract
 {
+
     public function charge(int $amountInCents): array
     {
         // TODO: Implement charge() method.

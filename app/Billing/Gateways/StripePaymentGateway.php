@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Billing;
+namespace App\Billing\Gateways;
 
-class PayPalPaymentGateway implements PaymentGatewayContract
+use App\Billing\PaymentGatewayContract;
+
+class StripePaymentGateway implements PaymentGatewayContract
 {
 
     public function charge(int $amountInCents): array
