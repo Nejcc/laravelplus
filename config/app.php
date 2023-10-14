@@ -21,6 +21,8 @@ return [
 
     'domain' => env('APP_DOMAIN', 'example.com'),
 
+    'default_currency' => env('DEFAULT_CURRENCY', 'eur'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Theme
