@@ -63,6 +63,26 @@ LaravelPlus drastically cuts down the application's time-to-market. Its robust s
 
 We wholeheartedly welcome contributions from the developer community. Whether you're a seasoned veteran or a newcomer, your insights and code contributions can help make LaravelPlus an even more formidable tool.
 
+We use **Sail** a light-weight command-line tool for interacting with Docker.
+
+Start:
+
+```bash
+vendor/bin/sail up
+```
+
+Start in the background:
+
+```bash
+vendor/bin/sail up -d
+```
+
+Stop:
+
+```bash
+vendor/bin/sail down
+```
+
 ## Licensing
 
 LaravelPlus proudly adheres to the [MIT license](https://opensource.org/licenses/MIT), a testimony to our commitment to the open-source ethos. This ensures that you enjoy the freedom to use, modify, and distribute the framework.
