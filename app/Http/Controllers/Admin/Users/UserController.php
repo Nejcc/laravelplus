@@ -21,6 +21,8 @@ final class UserController extends Controller
     {
         $this->middleware('auth');
 
+        // this would lock the registration of new users to only admins and super-admins
+        // idk what this app is for, so I'm not sure if this is what you want
         $this->authorizeResource(User::class, 'user');
     }
 
@@ -69,7 +71,7 @@ final class UserController extends Controller
         $user->update($request->validated());
 
         return redirect()
-            ->route('users.index')
+            ->route('admin.users.show', $user)
             ->with('success', 'User updated successfully.');
     }
 
