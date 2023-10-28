@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\Admin\Users\UserUpdateRequest;
 use App\Http\Requests\Admin\Users\UserStoreRequest;
+use Illuminate\Http\RedirectResponse;
 
 final class UserController extends Controller
 {
@@ -19,9 +20,11 @@ final class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->authorizeResource(User::class, 'user');
     }
 
-    public function index()
+    public function index(): mixed
     {
         $users = User::paginate(config('admin.users.paginate_count', 15))
                         ->withQueryString();
@@ -29,29 +32,39 @@ final class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    public function create()
+    public function create(): mixed
     {
         return view('admin.users.create');
     }
 
-    public function store(UserStoreRequest $request)
+    public function store(UserStoreRequest $request): mixed
     {
-        User::create($request->validated());
+        $user = User::create($request->validated());
 
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        // Do we want to go directly to users index page?
+
+        // return redirect()
+        //     ->route('admin.users.index')
+        //     ->with('success', 'User created successfully.');
+
+        // Do we want to go directly to the user's edit page?
+
+        return redirect()
+            ->route('admin.users.show', $user)
+            ->with('success', 'User created successfully.');
     }
 
-    public function show(User $user)
+    public function show(User $user): mixed
     {
-        return view('admin.users.show', compact('user'));
+        return view('admin.users.show', ['user' => $user]);
     }
 
-    public function edit(User $user)
+    public function edit(User $user): mixed
     {
-        return view('admin.users.edit', compact('user'));
+        return view('admin.users.edit', ['user' => $user]);
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user): mixed
     {
         $user->update($request->validated());
 
@@ -60,10 +73,12 @@ final class UserController extends Controller
             ->with('success', 'User updated successfully.');
     }
 
-    public function destroy(User $user)
+    public function destroy(User $user): mixed
     {
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User deleted successfully.');
     }
 }
