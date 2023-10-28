@@ -8,6 +8,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Observers\UserObserver;
+use App\Models\User;
 
 final class EventServiceProvider extends ServiceProvider
 {
@@ -20,6 +22,16 @@ final class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+    ];
+
+
+    /**
+     * The model observers to register.
+     *
+     * @var array<string, string|object|array<int, string|object>>
+     */
+    protected $observers = [
+        User::class => [UserObserver::class],
     ];
 
     /**
