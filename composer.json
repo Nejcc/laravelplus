@@ -13,6 +13,7 @@
         "laravel/socialite": "^v5.16.0",
         "laravel/tinker": "^v2.10.0",
         "laravel/ui": "^v4.5.2",
+        "nejcc/php-datatypes": "^1.0",
         "spatie/laravel-cookie-consent": "^3.3.2",
         "spatie/laravel-permission": "^6.9.0"
     },

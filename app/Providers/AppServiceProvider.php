@@ -7,6 +7,7 @@ namespace App\Providers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 final class AppServiceProvider extends ServiceProvider
@@ -38,5 +39,7 @@ final class AppServiceProvider extends ServiceProvider
          */
         Schema::defaultStringLength(191);
         //        Builder::defaultStringLength(191);
+
+        Vite::prefetch(concurrency: 3);
     }
 }
