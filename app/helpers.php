@@ -112,7 +112,7 @@ if (!function_exists('vd')) {
 
     function vd(...$dump)
     {
-        return var_dump($dump);
+        var_dump($dump);
     }
 }
 
