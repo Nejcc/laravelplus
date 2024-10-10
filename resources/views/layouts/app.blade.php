@@ -82,5 +82,9 @@
         @yield('content')
     </main>
 </div>
+
+<script>
+    window.translations = @json(@$translations);
+</script>
 </body>
 </html>
