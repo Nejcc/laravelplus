@@ -177,5 +177,8 @@
 <script src="{{ asset(config('app.theme.path').'dist/js/tabler.min.js?1674944402') }}" defer></script>
 <script src="{{ asset(config('app.theme.path').'dist/js/demo.min.js?1674944402') }}" defer></script>
 @stack('js')
+<script>
+    window.translations = @json(@$translations);
+</script>
 </body>
 </html>
