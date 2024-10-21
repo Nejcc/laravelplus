@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-;
-
 if (!function_exists('getAllLocales')) {
 
     function getAllLocales(): array
     {
-        return \App\Helpers\Utilities\GetLocales::all();
+        return App\Helpers\Utilities\GetLocales::all();
     }
 }
 
@@ -16,13 +14,13 @@ if (!function_exists('getLocaleByName')) {
 
     function getLocaleByName(string $name): array
     {
-        return \App\Helpers\Utilities\GetLocales::get($name);
+        return App\Helpers\Utilities\GetLocales::get($name);
     }
 }
 
 if (!function_exists('my_role')) {
     /**
-     * @return \Illuminate\Contracts\Auth\Authenticatable|null|string
+     * @return Illuminate\Contracts\Auth\Authenticatable|null|string
      */
     function my_role()
     {
@@ -47,7 +45,7 @@ if (!function_exists('update_usage_interface')) {
         $routes = getDictionaryOfUsageinterface();
         $route_name = request()->route()->uri();
 
-        $route_name_serialized = \Illuminate\Support\Str::slug($route_name);
+        $route_name_serialized = Illuminate\Support\Str::slug($route_name);
 
         $user = me();
         $user_id = $user->id;
@@ -110,7 +108,7 @@ if (!function_exists('cannot')) {
 
 if (!function_exists('vd')) {
 
-    function vd(...$dump)
+    function vd(...$dump): void
     {
         var_dump($dump);
     }
@@ -118,9 +116,9 @@ if (!function_exists('vd')) {
 
 if (!function_exists('db')) {
 
-    function db(string $query, string $connection = 'mysql')
+    function db(string $query, string $connection = 'mysql'): array
     {
-        return \Illuminate\Support\Facades\DB::connection($connection)->select($query);
+        return Illuminate\Support\Facades\DB::connection($connection)->select($query);
     }
 }
 
@@ -128,7 +126,7 @@ if (!function_exists('dbfirst')) {
 
     function dbfirst(string $query, string $connection = 'mysql')
     {
-        return \Illuminate\Support\Facades\DB::connection($connection)->selectOne($query);
+        return Illuminate\Support\Facades\DB::connection($connection)->selectOne($query);
     }
 }
 
@@ -140,10 +138,9 @@ if (!function_exists('slug')) {
     }
 }
 
-
 if (!function_exists('ndd')) {
     /**
-     * @param mixed ...$vars
+     * @param  mixed  ...$vars
      */
     function ndd(...$vars): void
     {
