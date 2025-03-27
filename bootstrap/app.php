@@ -8,14 +8,21 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: [
-            __DIR__.'/../routes/web.php',
-            __DIR__.'/../routes/ajax.php',
-            __DIR__.'/../routes/admin.php',
-        ],
+        web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
         channels: __DIR__.'/../routes/channels.php',
         health: '/up',
+        then: function (): void {
+            Route::middleware(['api', 'auth'])
+                ->prefix('ajax')
+                ->name('ajax.')
+                ->group(base_path('routes/ajax.php'));
+
+            Route::middleware('web')
+                ->prefix('admin')
+                ->name('admin.')
+                ->group(base_path('routes/admin.php'));
+        },
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [
