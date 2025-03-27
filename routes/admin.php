@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('admin.')->group(function (): void {
+//Route::name('admin.')->group(function (): void {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
@@ -36,4 +36,4 @@ Route::name('admin.')->group(function (): void {
      * Switch user
      */
     Route::post('/switch-user', [\App\Http\Controllers\Admin\Users\SwitchUserController::class, 'loginAs'])->name('switch-user.login-as');
-});
+//});
