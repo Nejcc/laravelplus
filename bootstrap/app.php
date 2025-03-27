@@ -14,8 +14,15 @@ return Application::configure(basePath: dirname(__DIR__))
         channels: __DIR__.'/../routes/channels.php',
         health: '/up',
         then: function (): void {
-            Route::prefix('ajax')->name('ajax.')->group(base_path('routes/ajax.php'));
-            Route::prefix('admin')->name('admin.')->group(base_path('routes/admin.php'));
+            Route::middleware(['api', 'auth'])
+                ->prefix('ajax')
+                ->name('ajax.')
+                ->group(base_path('routes/ajax.php'));
+
+            Route::middleware('web')
+                ->prefix('admin')
+                ->name('admin.')
+                ->group(base_path('routes/admin.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
