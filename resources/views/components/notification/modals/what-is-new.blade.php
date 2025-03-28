@@ -15,25 +15,13 @@
                         </svg>
                         <h2 id="what-is-tabler">{{ __('Welcome to new version') }}</h2>
                         <div class="text-start">
+                            <p class="text-start">{{ __('We are excited to announce the latest additions to the LaravelPlus platform, which are designed to enhance the development experience and provide powerful tools for administrators and developers alike.') }}</p>
+                            <p>{{ __('Let\'s take a closer look at the new features:') }}</p>
+                            <h4>{{ __('Remote Modules:') }}</h4>
+                            <p>{{ __('Remote Access Modules offer administrators easy access to all users\' views within the LaravelPlus platform. This feature enables administrators to remotely view and manage user interfaces, allowing for seamless troubleshooting and support. With Remote Modules, administrators can efficiently assist users, identify and resolve issues, and provide a smoother user experience.') }}</p>
 
-                            <p class="text-start">We are excited to announce the latest additions to the LaravelPlus
-                                platform,
-                                which are designed to enhance the development experience and provide powerful tools for
-                                administrators and developers alike. </p><p> Let's take a closer look at the new features: </p>
-                            <h4>Remote Modules:</h4>
-                            <p>Remote Access Modules offer administrators easy access to all users' views within the LaravelPlus
-                                platform. This feature enables administrators to remotely view and manage user interfaces,
-                                allowing for seamless troubleshooting and support. With Remote Modules, administrators can
-                                efficiently assist users, identify and resolve issues, and provide a smoother user
-                                experience.</p>
-
-                            <h4>Plugin Modules:</h4>
-                            <p>Plugin Modules introduce a powerful tool for building HMVC (Hierarchical
-                                Model-View-Controller)
-                                architecture within Laravel projects. This feature enables developers to create modular,
-                                scalable, and maintainable applications. With Plugin Modules, developers can easily extend
-                                and
-                                customize their Laravel projects, promoting code reusability and efficient development..</p>
+                            <h4>{{ __('Plugin Modules:') }}</h4>
+                            <p>{{ __('Plugin Modules introduce a powerful tool for building HMVC (Hierarchical Model-View-Controller) architecture within Laravel projects. This feature enables developers to create modular, scalable, and maintainable applications. With Plugin Modules, developers can easily extend and customize their Laravel projects, promoting code reusability and efficient development.') }}</p>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -49,7 +37,7 @@
                                     </form>
                                 </div>
                                 <div class="col">
-                                    <a href="#" class="btn btn-success w-100">
+                                    <a href="#" class="btn btn-success w-100" data-bs-dismiss="modal">
                                         {{ __('Read more') }}
                                     </a>
                                 </div>
