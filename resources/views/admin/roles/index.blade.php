@@ -8,7 +8,7 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        Roles
+                        {{ __('Roles') }}
                     </h2>
 {{--                    <div class="text-muted mt-1">1-12 of 241 photos</div>--}}
                 </div>
@@ -17,7 +17,7 @@
                     <div class="d-flex">
                         <div class="me-3">
                             <div class="input-icon">
-                                <input type="text" name="" class="form-control" placeholder="Search…">
+                                <input type="text" name="" class="form-control" placeholder="{{ __('Search…') }}">
                                 <span class="input-icon-addon">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                          viewBox="0 0 24 24"
@@ -29,7 +29,7 @@
                                   </span>
                             </div>
                         </div>
-                        <a href="#" class="btn btn-primary">
+                        <a href="{{ route('admin.roles.create') }}" class="btn btn-primary">
                             <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -38,7 +38,7 @@
                                 <path d="M12 5l0 14"></path>
                                 <path d="M5 12l14 0"></path>
                             </svg>
-                            Create new Role
+                            {{ __('Create new Role') }}
                         </a>
                     </div>
                 </div>
@@ -57,10 +57,11 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Guard name</th>
-                                <th>Users</th>
-                                <th class="w-1"></th>
+                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('Guard name') }}</th>
+                                <th>{{ __('Users') }}</th>
+                                <th>{{ __('Description') }}</th>
+                                <th class="w-1">{{ __('Actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -69,10 +70,22 @@
                                     <th>{{ $role->id }}</th>
                                     <td>{{ $role->name }}</td>
                                     <td>{{ $role->guard_name }}</td>
-                                    <td><a href="{{route('admin.roles.users.show', $role->slug)}}">{{ $role->users_count }}</a></td>
+                                    <td><a href="{{ route('admin.roles.users.show', $role) }}">{{ $role->users_count }}</a></td>
+                                    <td>{{ $role->description }}</td>
                                     <td class="d-flex">
-                                        <a href="{{ route('admin.roles.show', $role->slug) }}" class="btn btn-primary mx-1">Show</a>
-                                        <a href="#" class="btn btn-primary mx-1">Edit</a>
+                                        <a href="{{ route('admin.roles.show', $role) }}" class="btn btn-primary btn-sm mx-1">
+                                            {{ __('Show') }}
+                                        </a>
+                                        <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-warning btn-sm mx-1">
+                                            {{ __('Edit') }}
+                                        </a>
+                                        <form action="{{ route('admin.roles.destroy', $role) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm mx-1" onclick="return confirm('{{ __('Are you sure you want to delete this role?') }}')">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

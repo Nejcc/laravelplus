@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Ajax\User\Notification;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\WhatsNewNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,9 @@ final class ReadWhatsNewController extends Controller
         $user = auth()->user();
         $user->is_read_news = true;
         $user->save();
+
+        // Create a notification for the What's New feature
+        $user->notify(new WhatsNewNotification());
 
         return redirect()->route('home');
     }
