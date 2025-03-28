@@ -1,9 +1,9 @@
-
 import './bootstrap';
 import {createApp, useTransitionState} from 'vue';
 import { createPinia } from 'pinia'
 import axiosInstance from './axiosInstance';
 import { APP_TOKEN, API_BASE_URL } from './constants';
+import axios from 'axios';
 
 import registerPlugins from './registerPlugins';
 import registerComponents from './registerComponents';
@@ -26,6 +26,10 @@ registerComponents(app);
 const translationsState = useTranslationsState();
 window.translations = {};
 translationsState.setTranslations(window.translations);
+
+// Set up axios defaults
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
 
 // Mount App
 app.mount('#app');

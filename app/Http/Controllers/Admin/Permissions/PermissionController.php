@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin\Permissions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Validator;
 
 final class PermissionController extends Controller
 {
@@ -21,26 +22,95 @@ final class PermissionController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Display a listing of the permissions.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //        $permission_groups = Permission::all()->groupBy('group_name');
-        $permission_groups = Permission::all();
+        $query = Permission::query();
 
-        return view('admin.permissions.index', compact(['permission_groups']));
+        if ($request->has('search') && $request->search !== '') {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('guard_name', 'like', "%{$search}%");
+            });
+        }
+
+        $permissions = $query->orderBy('name')->paginate(10);
+
+        if ($request->wantsJson()) {
+            return response()->json($permissions);
+        }
+
+        return view('admin.permissions.index');
     }
 
-    public function show()
+    /**
+     * Store a newly created permission.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
     {
-        $permission_groups = Permission::all()->groupBy('group_name');
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255|unique:permissions,name',
+            'guard_name' => 'required|string|max:255',
+        ]);
 
-        $user_id = 2;
-        $sql = "SELECT permission_id FROM model_has_permissions WHERE model_type = 'App/Models/User' AND model_id = ".$user_id;
-        $user_permissions = collect(DB::select($sql))->unique()->pluck('permission_id')->toArray();
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
-        return view('admin.permissions.index', compact(['permission_groups', 'user_permissions']));
+        $permission = Permission::create($request->all());
+
+        return response()->json([
+            'message' => __('Permission created successfully.'),
+            'permission' => $permission
+        ]);
+    }
+
+    /**
+     * Update the specified permission.
+     *
+     * @param Request $request
+     * @param Permission $permission
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, Permission $permission)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255|unique:permissions,name,' . $permission->id,
+            'guard_name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $permission->update($request->all());
+
+        return response()->json([
+            'message' => __('Permission updated successfully.'),
+            'permission' => $permission
+        ]);
+    }
+
+    /**
+     * Remove the specified permission.
+     *
+     * @param Permission $permission
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Permission $permission)
+    {
+        $permission->delete();
+
+        return response()->json([
+            'message' => __('Permission deleted successfully.')
+        ]);
     }
 }

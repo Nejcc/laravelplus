@@ -31,3 +31,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/tos', [App\Http\Controllers\HomeController::class, 'index'])->name('tos');
 
 Route::post('/switch-user-back', [\App\Http\Controllers\Admin\Users\SwitchUserController::class, 'back'])->name('switch-user.back');
+
+Route::middleware(['auth'])->group(function () {
+    // Notification routes
+    Route::post('/notifications/{id}/mark-as-read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::post('/notifications/mark-all-as-read', [App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+});
