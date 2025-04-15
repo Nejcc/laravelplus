@@ -2,10 +2,10 @@
 @import url('https://fonts.bunny.net/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@use 'variables';
 
 // Bootstrap
-//@import 'bootstrap/scss/bootstrap';
+//@use 'bootstrap/scss/bootstrap';
 
 .overide-dark .form-check-input:not(:checked),
 .overide-dark .form-control,
