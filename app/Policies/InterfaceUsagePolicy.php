@@ -1,66 +1,46 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\InterfaceUsage;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class InterfaceUsagePolicy
+final class InterfaceUsagePolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
-    {
-        //
-    }
+    public function viewAny(User $user): bool {}
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, InterfaceUsage $interfaceUsage): bool
-    {
-        //
-    }
+    public function view(User $user, InterfaceUsage $interfaceUsage): bool {}
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
-    {
-        //
-    }
+    public function create(User $user): bool {}
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, InterfaceUsage $interfaceUsage): bool
-    {
-        //
-    }
+    public function update(User $user, InterfaceUsage $interfaceUsage): bool {}
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, InterfaceUsage $interfaceUsage): bool
-    {
-        //
-    }
+    public function delete(User $user, InterfaceUsage $interfaceUsage): bool {}
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, InterfaceUsage $interfaceUsage): bool
-    {
-        //
-    }
+    public function restore(User $user, InterfaceUsage $interfaceUsage): bool {}
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, InterfaceUsage $interfaceUsage): bool
-    {
-        //
-    }
+    public function forceDelete(User $user, InterfaceUsage $interfaceUsage): bool {}
 }

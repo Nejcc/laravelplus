@@ -86,7 +86,7 @@ final class PluginServiceProvider extends ServiceProvider
             //            dd($namespace.'Controllers');
             // Load controllers
             //            if (is_dir($path . 'Controllers')) {
-            ////                $this->app->make($namespace . 'Controllers')->hintPath($path . 'Controllers');
+            // //                $this->app->make($namespace . 'Controllers')->hintPath($path . 'Controllers');
             //                $this->app->make($namespace . 'Controllers');
             //            }
         }

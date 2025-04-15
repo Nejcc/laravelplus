@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Admin\Permissions\PermissionController;
+use App\Http\Controllers\Admin\Roles\RoleController;
+use App\Http\Controllers\Admin\Users\SwitchUserController;
 use App\Http\Controllers\Admin\Users\UserController;
 use App\Http\Controllers\Admin\Users\UserNotificationController;
-use App\Http\Controllers\Admin\Roles\RoleController;
-use App\Http\Controllers\Admin\Permissions\PermissionController;
-use App\Http\Controllers\Admin\Users\SwitchUserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +28,7 @@ Route::name('admin.')->group(function (): void {
     /*
      * Users
      */
-    Route::prefix('users')->name('users.')->group(function () {
+    Route::prefix('users')->name('users.')->group(function (): void {
         Route::get('/', [UserController::class, 'index'])->name('index');
         Route::get('/create', [UserController::class, 'create'])->name('create');
         Route::post('/', [UserController::class, 'store'])->name('store');
@@ -38,7 +38,7 @@ Route::name('admin.')->group(function (): void {
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
 
         // User Notifications Routes
-        Route::prefix('{user}/notifications')->name('notifications.')->group(function () {
+        Route::prefix('{user}/notifications')->name('notifications.')->group(function (): void {
             Route::post('/{notification}/mark-as-read', [UserNotificationController::class, 'markAsRead'])->name('markAsRead');
             Route::post('/mark-all-as-read', [UserNotificationController::class, 'markAllAsRead'])->name('markAllAsRead');
         });
@@ -53,7 +53,7 @@ Route::name('admin.')->group(function (): void {
     /*
      * Permissions
      */
-    Route::prefix('permissions')->name('permissions.')->group(function () {
+    Route::prefix('permissions')->name('permissions.')->group(function (): void {
         Route::get('/', [PermissionController::class, 'index'])->name('index');
         Route::post('/', [PermissionController::class, 'store'])->name('store');
         Route::put('/{permission}', [PermissionController::class, 'update'])->name('update');
@@ -65,4 +65,3 @@ Route::name('admin.')->group(function (): void {
      */
     Route::post('/switch-user', [SwitchUserController::class, 'loginAs'])->name('switch-user.login-as');
 });
-

@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Admin\Permissions;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
 
 final class PermissionController extends Controller
 {
@@ -24,7 +24,6 @@ final class PermissionController extends Controller
     /**
      * Display a listing of the permissions.
      *
-     * @param Request $request
      * @return \Illuminate\View\View|\Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
@@ -33,9 +32,9 @@ final class PermissionController extends Controller
 
         if ($request->has('search') && $request->search !== '') {
             $search = $request->input('search');
-            $query->where(function ($q) use ($search) {
+            $query->where(function ($q) use ($search): void {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('guard_name', 'like', "%{$search}%");
+                    ->orWhere('guard_name', 'like', "%{$search}%");
             });
         }
 
@@ -51,7 +50,6 @@ final class PermissionController extends Controller
     /**
      * Store a newly created permission.
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -69,15 +67,13 @@ final class PermissionController extends Controller
 
         return response()->json([
             'message' => __('Permission created successfully.'),
-            'permission' => $permission
+            'permission' => $permission,
         ]);
     }
 
     /**
      * Update the specified permission.
      *
-     * @param Request $request
-     * @param Permission $permission
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Permission $permission)
@@ -95,14 +91,13 @@ final class PermissionController extends Controller
 
         return response()->json([
             'message' => __('Permission updated successfully.'),
-            'permission' => $permission
+            'permission' => $permission,
         ]);
     }
 
     /**
      * Remove the specified permission.
      *
-     * @param Permission $permission
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Permission $permission)
@@ -110,7 +105,7 @@ final class PermissionController extends Controller
         $permission->delete();
 
         return response()->json([
-            'message' => __('Permission deleted successfully.')
+            'message' => __('Permission deleted successfully.'),
         ]);
     }
 }

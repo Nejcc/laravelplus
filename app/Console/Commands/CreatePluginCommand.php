@@ -208,12 +208,12 @@ final class CreatePluginCommand extends Command
                 $stub
             );
 
-            //array:4 [ // app\Console\Commands\CreatePluginCommand.php:203
+            // array:4 [ // app\Console\Commands\CreatePluginCommand.php:203
             //  0 => "Example"
             //  1 => "App\Plugins\ExamplePlugin"
             //  2 => "ExamplePlugin"
             //  3 => "example::index"
-            //]
+            // ]
 
             //            dd([$this->pluginData['class_name'], $this->pluginData['namespace'], $this->pluginData['plugin_name'], $this->pluginData['files']['blade']['index']]);
 
@@ -245,7 +245,7 @@ final class CreatePluginCommand extends Command
     private function makeView(string $filePath, mixed $file): void
     {
         //        "C:\wamp\www\laravelplus.com\app\Plugins/ExamplePlugin/" // app\Console\Commands\CreatePluginCommand.php:227
-        //"example\index.blade.php" // app\Console\Commands\CreatePluginCommand.php:227
+        // "example\index.blade.php" // app\Console\Commands\CreatePluginCommand.php:227
 
         //        dd($filePath, $file);
         $full_file_path = $filePath.'Views/'.$file;
