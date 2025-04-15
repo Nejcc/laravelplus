@@ -105,29 +105,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Available locales
-    |--------------------------------------------------------------------------
-    |
-    | List all locales that your application works with
-    |
-    */
-
-    'available_locales' => [
-        'en'    => [
-            'name' => 'english',
-            'slug' => 'en',
-        ],
-        'de'    => [
-            'name' => 'Germany',
-            'slug' => 'de',
-        ], 'si' => [
-            'name' => 'Slovenian',
-            'slug' => 'si',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Application Fallback Locale
     |--------------------------------------------------------------------------
     |
@@ -138,6 +115,19 @@ return [
     */
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Available Locales
+    |--------------------------------------------------------------------------
+    |
+    | The available locales determines which locales are available for the
+    | application. You may change the value to correspond to any of
+    | the language folders that are provided through your application.
+    |
+    */
+
+    'available_locales' => explode(',', env('APP_AVAILABLE_LOCALES', 'en')),
 
     /*
     |--------------------------------------------------------------------------
