@@ -31,6 +31,7 @@
 <body>
 <script src="{{ asset(config('app.theme.path').'dist/js/demo-theme.min.js') }}"></script>
 <div class="page" id="app">
+    <toast-component></toast-component>
     <!-- Navbar -->
     <header class="navbar navbar-expand-md d-print-none" data-bs-theme="dark">
         <div class="container-xl">

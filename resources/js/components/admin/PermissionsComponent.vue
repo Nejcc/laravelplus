@@ -185,6 +185,7 @@ import ButtonComponent from '@/components/tabler/feedback/ButtonComponent.vue'
 import InputComponent from '@/components/tabler/forms/InputComponent.vue'
 import SelectComponent from '@/components/tabler/forms/SelectComponent.vue'
 import ModalDialogComponent from '@/components/tabler/layout/ModalDialogComponent.vue'
+import { useToastStore } from '@/stores/toast'
 
 export default {
     components: {
@@ -277,6 +278,7 @@ export default {
                 paginationCache.value.set(cacheKey, response.data)
             } catch (error) {
                 console.error('Error fetching permissions:', error)
+                toastStore.error('An error occurred while fetching permissions')
             } finally {
                 loading.value = false
             }
@@ -323,6 +325,8 @@ export default {
             getPermissions(1)
         })
 
+        const toastStore = useToastStore()
+
         const submitForm = async () => {
             loading.value = true
             errors.value = {}
@@ -330,8 +334,10 @@ export default {
             try {
                 if (showEditModal.value) {
                     await axios.put(`/admin/permissions/${editingId.value}`, form.value)
+                    toastStore.success('Permission updated successfully')
                 } else {
                     await axios.post('/admin/permissions', form.value)
+                    toastStore.success('Permission created successfully')
                 }
 
                 closeModal()
@@ -339,6 +345,8 @@ export default {
             } catch (error) {
                 if (error.response?.data?.errors) {
                     errors.value = error.response.data.errors
+                } else {
+                    toastStore.error('An error occurred while saving the permission')
                 }
             } finally {
                 loading.value = false
@@ -362,8 +370,10 @@ export default {
                 await axios.delete(`/admin/permissions/${deletingId.value}`)
                 showDeleteModal.value = false
                 getPermissions()
+                toastStore.success('Permission deleted successfully')
             } catch (error) {
                 console.error('Error deleting permission:', error)
+                toastStore.error('An error occurred while deleting the permission')
             } finally {
                 loading.value = false
             }
@@ -403,6 +413,8 @@ export default {
         }
 
         onMounted(() => {
+            // Clear all toasts when component is mounted
+            toastStore.toasts = [];
             getPermissions(1)
         })
 
@@ -429,7 +441,8 @@ export default {
             translationsState,
             tableColumns,
             currentPage,
-            handlePaginationHover
+            handlePaginationHover,
+            toastStore
         }
     }
 }
