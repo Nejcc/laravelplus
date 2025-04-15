@@ -22,7 +22,7 @@ final class SwitchUser extends Component
      */
     public function __construct()
     {
-        $this->users = \App\Models\User::all();
+        $this->users = User::all();
     }
 
     /**
