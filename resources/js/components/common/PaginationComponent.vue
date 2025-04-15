@@ -7,7 +7,14 @@
                 </a>
             </li>
             <li v-for="page in pages" :key="page" class="page-item" :class="{ active: page === data.current_page }">
-                <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
+                <a 
+                    class="page-link" 
+                    href="#" 
+                    @click.prevent="changePage(page)"
+                    @mouseenter="$emit('pagination-hover-page', page)"
+                >
+                    {{ page }}
+                </a>
             </li>
             <li class="page-item" :class="{ disabled: data.current_page === data.last_page }">
                 <a class="page-link" href="#" @click.prevent="changePage(data.current_page + 1)">
@@ -34,7 +41,7 @@ export default {
             }
         }
     },
-    emits: ['pagination-change-page'],
+    emits: ['pagination-change-page', 'pagination-hover-page'],
     setup(props, { emit }) {
         const translationsState = useTranslationsState()
         
