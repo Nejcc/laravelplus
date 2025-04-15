@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "nejcc/laravelplus",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "LaravelPlus - An enhanced Laravel framework with additional features and plugins",
+    "keywords": ["framework", "laravel", "plugins", "enhanced"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
@@ -63,6 +63,15 @@
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"npm run dev\" --names=server,queue,vite"
+        ],
+        "pint": [
+            "vendor/bin/pint"
+        ],
+        "pint:fix": [
+            "vendor/bin/pint --fix"
+        ],
+        "pint:test": [
+            "vendor/bin/pint --test"
         ]
     },
     "extra": {
