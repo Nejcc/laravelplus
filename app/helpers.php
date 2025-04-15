@@ -6,7 +6,7 @@ if (!function_exists('getAllLocales')) {
 
     function getAllLocales(): array
     {
-        return App\Helpers\Utilities\GetLocales::all();
+        return App\Helpers\LocaleHelper::getAllLocales();
     }
 }
 

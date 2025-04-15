@@ -4,18 +4,39 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
+
 final class LocaleController extends Controller
 {
-    public function __invoke($locale)
+    /**
+     * Set the application locale.
+     */
+    public function __invoke(string $locale): RedirectResponse
     {
-        if (!in_array($locale, config('app.available_locales'))) {
-            return redirect()->back();
+        $availableLocales = config('app.available_locales', ['en']);
+        if (!is_array($availableLocales)) {
+            $availableLocales = ['en'];
         }
 
-        app()->setLocale($locale);
-        session()->put('locale', $locale);
+        if (!in_array($locale, $availableLocales)) {
+            $locale = config('app.fallback_locale', 'en');
+        }
 
-        // Redirect back to the previous page or a specific route
-        return redirect()->back()->with('locale', $locale);
+        App::setLocale($locale);
+        Session::put('locale', $locale);
+
+        // Load translations for the new locale
+        $translations = [];
+        $translationPath = resource_path('js/translations/' . $locale . '.json');
+        if (File::exists($translationPath)) {
+            $translations = json_decode(File::get($translationPath), true);
+        }
+
+        Session::put('translations', $translations);
+
+        return back();
     }
 }

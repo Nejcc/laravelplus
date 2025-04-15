@@ -14,9 +14,9 @@ final class CheckLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale = session()->get('locale', config('app.fallback_locale'));
-        app()->setLocale($locale);
-        session()->put('locale', $locale);
+        if (session()->has('locale')) {
+            app()->setLocale(session()->get('locale'));
+        }
 
         return $next($request);
     }

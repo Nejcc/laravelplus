@@ -108,4 +108,25 @@ final class PermissionController extends Controller
             'message' => __('Permission deleted successfully.'),
         ]);
     }
+
+    public function list(Request $request)
+    {
+
+        $query = Permission::query();
+
+        // Apply search filter
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Apply guard_name filter
+        if ($request->has('guard') && $request->guard !== 'all') {
+            $query->where('guard_name', $request->guard);
+        }
+
+        // Get paginated results
+        $permissions = $query->orderBy('name')->paginate(10);
+
+        return response()->json($permissions);
+    }
 }
