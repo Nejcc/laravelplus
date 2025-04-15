@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Helpers;
 
-class LocaleHelper
+final class LocaleHelper
 {
     /**
      * Get all available locales with their names.
@@ -83,4 +85,4 @@ class LocaleHelper
             default => '🌐',
         };
     }
-} 
+}

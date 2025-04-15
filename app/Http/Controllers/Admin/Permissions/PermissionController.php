@@ -111,9 +111,8 @@ final class PermissionController extends Controller
 
     public function list(Request $request)
     {
-        
-        $query = Permission::query();
 
+        $query = Permission::query();
 
         // Apply search filter
         if ($request->has('search')) {

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 
-class PermissionController extends Controller
+final class PermissionController extends Controller
 {
     public function list(Request $request)
     {
@@ -32,7 +34,7 @@ class PermissionController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:permissions',
-            'guard_name' => 'required|string|max:255'
+            'guard_name' => 'required|string|max:255',
         ]);
 
         $permission = Permission::create($validated);
@@ -44,7 +46,7 @@ class PermissionController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:permissions,name,' . $permission->id,
-            'guard_name' => 'required|string|max:255'
+            'guard_name' => 'required|string|max:255',
         ]);
 
         $permission->update($validated);
@@ -58,4 +60,4 @@ class PermissionController extends Controller
 
         return response()->json(['message' => 'Permission deleted successfully']);
     }
-} 
+}

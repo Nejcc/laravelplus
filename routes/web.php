@@ -34,7 +34,7 @@ Route::post('/switch-user-back', [App\Http\Controllers\Admin\Users\SwitchUserCon
 
 Route::middleware(['auth'])->group(function (): void {
     // Notification routes
-    Route::prefix('notifications')->name('notifications.')->group(function () {
+    Route::prefix('notifications')->name('notifications.')->group(function (): void {
         Route::get('/', [App\Http\Controllers\NotificationController::class, 'index'])->name('index');
         Route::post('/{notification}/mark-as-read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('markAsRead');
         Route::post('/mark-all-as-read', [App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('markAllAsRead');
