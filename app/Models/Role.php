@@ -18,17 +18,17 @@ final class Role extends SpatieRole
         'description',
     ];
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
-        static::creating(function ($role) {
+        self::creating(function ($role): void {
             if (empty($role->slug)) {
                 $role->slug = str()->slug($role->name);
             }
         });
 
-        static::updating(function ($role) {
+        self::updating(function ($role): void {
             if ($role->isDirty('name') && empty($role->slug)) {
                 $role->slug = str()->slug($role->name);
             }

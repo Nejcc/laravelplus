@@ -6,7 +6,6 @@ namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 
 final class UserNotificationController extends Controller
@@ -24,8 +23,6 @@ final class UserNotificationController extends Controller
     /**
      * Mark a notification as read.
      *
-     * @param User $user
-     * @param DatabaseNotification $notification
      * @return \Illuminate\Http\RedirectResponse
      */
     public function markAsRead(User $user, DatabaseNotification $notification)
@@ -38,7 +35,6 @@ final class UserNotificationController extends Controller
     /**
      * Mark all notifications as read.
      *
-     * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function markAllAsRead(User $user)
@@ -47,4 +43,4 @@ final class UserNotificationController extends Controller
 
         return back()->with('success', __('All notifications marked as read.'));
     }
-} 
+}
