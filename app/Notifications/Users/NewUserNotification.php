@@ -59,12 +59,12 @@ final class NewUserNotification extends Notification
         ];
     }
 
-//    public function toMail($notifiable)
-//    {
-//        return (new MailMessage)
-//            ->subject('New Model Created')
-//            ->line('Hello, ' . $notifiable->name . '!')
-//            ->line('A new model has been created with the following details:')
-//            ->action('View Model', url('/models/' . $this->model->id));
-//    }
+    //    public function toMail($notifiable)
+    //    {
+    //        return (new MailMessage)
+    //            ->subject('New Model Created')
+    //            ->line('Hello, ' . $notifiable->name . '!')
+    //            ->line('A new model has been created with the following details:')
+    //            ->action('View Model', url('/models/' . $this->model->id));
+    //    }
 }

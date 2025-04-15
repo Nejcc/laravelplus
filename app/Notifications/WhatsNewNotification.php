@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 final class WhatsNewNotification extends Notification
@@ -15,9 +14,7 @@ final class WhatsNewNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Get the notification's delivery channels.
@@ -42,4 +39,4 @@ final class WhatsNewNotification extends Notification
             'url' => '#',
         ];
     }
-} 
+}
