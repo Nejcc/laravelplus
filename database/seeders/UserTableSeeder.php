@@ -89,7 +89,7 @@ final class UserTableSeeder extends Seeder
                 foreach ($this->permissionsOnGroup[$role] as $key => $permission) {
                     if (!empty($permission[0])) {
                         foreach ($permission as $p) {
-//                            $permissionSlug = Str::slug("{$key} {$p}");
+                            //                            $permissionSlug = Str::slug("{$key} {$p}");
                             $newPermission = Permission::updateOrCreate(['name' => "{$key} {$p}", 'group_name' => $p]);
                             $newRole->givePermissionTo($newPermission);
                         }

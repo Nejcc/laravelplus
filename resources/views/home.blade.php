@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title', __('Dashboard'))
 
@@ -52,7 +52,7 @@
 @endsection
 
 @section('content')
-    <x-notification.modals.what-is-new></x-notification.modals.what-is-new>
+{{--    <x-notification.modals.what-is-new></x-notification.modals.what-is-new>--}}
 
     <div class="container my-3">
         <div class="row row-cards">

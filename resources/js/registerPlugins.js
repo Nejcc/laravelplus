@@ -1,4 +1,3 @@
-
 // import VueAutosuggest from "vue-autosuggest";
 // import VueClipboard from "vue-clipboard2";
 // import { Bootstrap5Pagination } from "laravel-vue-pagination";

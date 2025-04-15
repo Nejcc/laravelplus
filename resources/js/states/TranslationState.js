@@ -8,5 +8,8 @@ export const useTranslationsState = defineStore('translationsState', {
         setTranslations(t) {
             this.translationsState = t;
         },
+        translate(key) {
+            return this.translationsState[key] || key;
+        }
     },
 });

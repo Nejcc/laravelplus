@@ -15,7 +15,7 @@ final class ReadWhatsNewControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testReadNewsMarksUserAsRead(): void
+    public function test_read_news_marks_user_as_read(): void
     {
         // Arrange
         $user = User::factory()->create();

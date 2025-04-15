@@ -13,7 +13,7 @@ final class SwitchUserControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRemoteUserLoginAs(): void
+    public function test_remote_user_login_as(): void
     {
         $this->withExceptionHandling();
         Role::create(['name' => 'super-admin', 'slug' => 'super-admin']);
@@ -43,7 +43,7 @@ final class SwitchUserControllerTest extends TestCase
         $this->assertEquals($mainUser->id, session('main_user_id'));
     }
 
-    public function testUserRemoteBack(): void
+    public function test_user_remote_back(): void
     {
         Role::create(['name' => 'super-admin', 'slug' => 'super-admin']);
         // Create two users to use for testing

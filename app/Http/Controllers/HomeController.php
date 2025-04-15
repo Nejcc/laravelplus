@@ -26,9 +26,6 @@ final class HomeController extends Controller
         return view('home');
     }
 
-    /**
-     * @return array
-     */
     private function getTranslations(): array
     {
         return $this->translations = [
@@ -36,9 +33,6 @@ final class HomeController extends Controller
         ];
     }
 
-    /**
-     * @return array
-     */
     private function getPermissions(): array
     {
         return $this->permissions = [
