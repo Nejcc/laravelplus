@@ -64,4 +64,7 @@ Route::name('admin.')->group(function (): void {
      * Switch user
      */
     Route::post('/switch-user', [SwitchUserController::class, 'loginAs'])->name('switch-user.login-as');
+
+    Route::post('/permissions/list', [PermissionController::class, 'list'])->name('admin.permissions.list');
+    Route::resource('permissions', PermissionController::class);
 });
